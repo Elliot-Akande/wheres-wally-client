@@ -1,0 +1,32 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HomePage > renders Level links 1`] = `
+<div>
+  <a
+    href="/level/1/details"
+  >
+    Level 
+    1
+  </a>
+  <a
+    href="/level/2/details"
+  >
+    Level 
+    2
+  </a>
+  <a
+    href="/level/3/details"
+  >
+    Level 
+    3
+  </a>
+</div>
+`;
+
+exports[`HomePage > renders error message on useLevelData error 1`] = `
+<div>
+  <p>
+    Data fetching error.
+  </p>
+</div>
+`;
