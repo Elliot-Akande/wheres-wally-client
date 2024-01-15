@@ -4,17 +4,15 @@ import useLevelData from "../hooks/useLevelData";
 function HomePage() {
   const { levelData, error } = useLevelData();
 
+  if (error) return <p>Data fetching error.</p>;
+
   return (
     <>
-      {!error ? (
-        levelData.map(({ levelNum }) => (
-          <Link to={`level/${levelNum}/details`} key={levelNum}>
-            Level {levelNum}
-          </Link>
-        ))
-      ) : (
-        <p>Data fetching error.</p>
-      )}
+      {levelData.map(({ levelNum }) => (
+        <Link to={`level/${levelNum}/details`} key={levelNum}>
+          Level {levelNum}
+        </Link>
+      ))}
     </>
   );
 }
