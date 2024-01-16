@@ -1,8 +1,16 @@
 import { Link, useParams } from "react-router-dom";
 import Leaderboard from "./Leaderboard";
+import { useEffect } from "react";
+import checkLevelExists from "../checkLevelExists";
+import { useNavigate } from "react-router-dom";
 
 function DetailsPage() {
   const { levelNum } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!checkLevelExists(levelNum)) navigate("/");
+  }, []);
 
   return (
     <>
