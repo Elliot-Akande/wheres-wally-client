@@ -43,4 +43,15 @@ describe("Leaderboard", () => {
 
     expect(container).toMatchSnapshot();
   });
+
+  it("renders heading and loading message when loading data", () => {
+    mocks.useLeaderboardData.mockReturnValue({ data, loading: true, error });
+
+    const { container } = render(<Leaderboard levelNum={levelNum} />);
+
+    expect(useLeaderboardData).toBe(mocks.useLeaderboardData);
+    expect(useLeaderboardData).toHaveBeenCalled();
+
+    expect(container).toMatchSnapshot();
+  });
 });
