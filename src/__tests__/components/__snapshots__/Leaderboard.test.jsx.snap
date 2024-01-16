@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Leaderboard > renders heading and list on valid leaderboard data 1`] = `
+<div>
+  <div>
+    <h2>
+      Leaderboard
+    </h2>
+    <ul>
+      <li>
+        Anon
+         - 
+        00:32
+      </li>
+      <li>
+        Big Gary
+         - 
+        01:40
+      </li>
+      <li>
+        Gordon
+         - 
+        02:20
+      </li>
+    </ul>
+  </div>
+</div>
+`;
