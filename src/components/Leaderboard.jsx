@@ -19,7 +19,7 @@ function Leaderboard({ levelNum }) {
         <p>Loading...</p>
       ) : error ? (
         <p>Data fetching error.</p>
-      ) : (
+      ) : data ? (
         <ul>
           {data.map((entry) => (
             <li key={entry.id}>
@@ -27,6 +27,8 @@ function Leaderboard({ levelNum }) {
             </li>
           ))}
         </ul>
+      ) : (
+        <p>No scores recorded.</p>
       )}
     </div>
   );
