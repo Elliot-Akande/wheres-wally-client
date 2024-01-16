@@ -1,7 +1,7 @@
+import { render } from "@testing-library/react";
 import { vi } from "vitest";
-import useLeaderboardData from "../../hooks/useLeaderboardData";
-import { render, screen } from "@testing-library/react";
 import Leaderboard from "../../components/Leaderboard";
+import useLeaderboardData from "../../hooks/useLeaderboardData";
 
 const mocks = vi.hoisted(() => {
   return { useLeaderboardData: vi.fn() };
