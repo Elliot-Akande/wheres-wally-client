@@ -1,5 +1,18 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Leaderboard > renders heading and empty scores message when no data after loading 1`] = `
+<div>
+  <div>
+    <h2>
+      Leaderboard
+    </h2>
+    <p>
+      No scores recorded.
+    </p>
+  </div>
+</div>
+`;
+
 exports[`Leaderboard > renders heading and error message on data fetch error 1`] = `
 <div>
   <div>

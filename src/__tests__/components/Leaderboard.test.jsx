@@ -69,4 +69,19 @@ describe("Leaderboard", () => {
 
     expect(container).toMatchSnapshot();
   });
+
+  it("renders heading and empty scores message when no data after loading", () => {
+    mocks.useLeaderboardData.mockReturnValue({
+      data: null,
+      loading,
+      error,
+    });
+
+    const { container } = render(<Leaderboard levelNum={levelNum} />);
+
+    expect(useLeaderboardData).toBe(mocks.useLeaderboardData);
+    expect(useLeaderboardData).toHaveBeenCalled();
+
+    expect(container).toMatchSnapshot();
+  });
 });
