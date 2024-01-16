@@ -2,18 +2,15 @@ import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { vi } from "vitest";
 import HomePage from "../../components/HomePage";
+import useLevelData from "../../hooks/useLevelData";
 
-const mocks = vi.hoisted(() => {
-  return {
-    useLevelData: vi.fn(),
-  };
-});
+const mocks = vi.hoisted(() => ({
+  useLevelData: vi.fn(),
+}));
 
-vi.mock("../../hooks/useLevelData", () => {
-  return {
-    default: mocks.useLevelData,
-  };
-});
+vi.mock("/src/hooks/useLevelData", () => ({
+  default: mocks.useLevelData,
+}));
 
 describe("HomePage", () => {
   it("renders Level links", () => {
@@ -38,6 +35,9 @@ describe("HomePage", () => {
       </MemoryRouter>
     );
 
+    expect(useLevelData).toBe(mocks.useLevelData);
+    expect(useLevelData).toHaveBeenCalled();
+
     expect(container).toMatchSnapshot();
   });
 
@@ -52,6 +52,9 @@ describe("HomePage", () => {
         <HomePage />
       </MemoryRouter>
     );
+
+    expect(useLevelData).toBe(mocks.useLevelData);
+    expect(useLevelData).toHaveBeenCalled();
 
     expect(container).toMatchSnapshot();
   });
