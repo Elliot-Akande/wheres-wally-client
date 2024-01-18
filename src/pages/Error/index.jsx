@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function ErrorPage() {
+const Error = () => {
   return (
     <div>
       <h1>Oh no, this route doesn&apos;t exist!</h1>
@@ -9,6 +9,6 @@ function ErrorPage() {
       </Link>
     </div>
   );
-}
+};
 
-export default ErrorPage;
+export default Error;
