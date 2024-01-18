@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`DetailsPage > renders title, start link, leaderboard, and home link. 1`] = `
+exports[`LevelDetails > renders title, start link, leaderboard, and home link. 1`] = `
 <div>
   <h1>
     level 

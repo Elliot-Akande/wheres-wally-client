@@ -5,9 +5,9 @@ import {
   createMemoryRouter,
   useParams,
 } from "react-router-dom";
-import { vi } from "vitest";
-import DetailsPage from "../../components/DetailsPage";
-import routesConfig from "../../routesConfig.jsx";
+import { describe, expect, it, vi } from "vitest";
+import LevelDetails from "../index.jsx";
+import routesConfig from "/src/routesConfig.jsx";
 
 const mocks = vi.hoisted(() => {
   return {
@@ -16,7 +16,7 @@ const mocks = vi.hoisted(() => {
   };
 });
 
-vi.mock("/src/checkLevelExists.js", () => ({
+vi.mock("../checkLevelExists.js", () => ({
   default: mocks.checkLevelExists,
 }));
 
@@ -28,18 +28,18 @@ vi.mock("react-router-dom", async () => {
   };
 });
 
-vi.mock("/src/components/Leaderboard.jsx", () => ({
+vi.mock("/src/components/Leaderboard/Leaderboard.jsx", () => ({
   default: () => <div>Leaderboard Component</div>,
 }));
 
-describe("DetailsPage", () => {
+describe("LevelDetails", () => {
   it("renders title, start link, leaderboard, and home link.", () => {
     const levelNum = 3;
     mocks.useParams.mockReturnValue({ levelNum });
 
     const { container } = render(
       <MemoryRouter>
-        <DetailsPage />
+        <LevelDetails />
       </MemoryRouter>
     );
 

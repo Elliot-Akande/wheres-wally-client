@@ -1,10 +1,10 @@
 import { Link, useParams } from "react-router-dom";
-import Leaderboard from "./Leaderboard";
+import Leaderboard from "../../components/Leaderboard/Leaderboard";
 import { useEffect } from "react";
-import checkLevelExists from "../checkLevelExists";
+import checkLevelExists from "./checkLevelExists";
 import { useNavigate } from "react-router-dom";
 
-function DetailsPage() {
+const LevelDetails = () => {
   const { levelNum } = useParams();
   const navigate = useNavigate();
 
@@ -16,10 +16,10 @@ function DetailsPage() {
     <>
       <h1>level {levelNum}</h1>
       <Link to={`/level/${levelNum}`}>Start</Link>
-      <Leaderboard levelNum={levelNum} />
+      <Leaderboard levelNum={parseInt(levelNum, 10)} />
       <Link to={`/`}>Back</Link>
     </>
   );
-}
+};
 
-export default DetailsPage;
+export default LevelDetails;
