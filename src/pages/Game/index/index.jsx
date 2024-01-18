@@ -3,18 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Checklist from "../Checklist/Checklist";
 import LevelCompleteMenu from "../LevelCompleteMenu/LevelCompleteMenu";
 import TaggableImage from "../TaggableImage/TaggableImage";
-
-const useLevelData = (levelNum) => {
-  return {
-    data: {
-      token: "token",
-      img: "#",
-      characters: ["Wally", "Woof", "Odlaw"],
-    },
-    loading: false,
-    error: null,
-  };
-};
+import useLevelData from "../useLevelData";
 
 const checkAnswerRequest = (levelNum, answer) => {
   return true;
