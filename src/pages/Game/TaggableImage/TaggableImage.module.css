@@ -1,0 +1,26 @@
+.image {
+  height: 400px;
+  width: 600px;
+  background-color: tomato;
+  position: relative;
+}
+
+.marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.incorrect {
+  composes: marker;
+
+  opacity: 0;
+  animation: fadeout 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+@keyframes fadeout {
+  25%,
+  60% {
+    transform: scale(2) translate(-25%, -25%);
+    opacity: 1;
+  }
+}
