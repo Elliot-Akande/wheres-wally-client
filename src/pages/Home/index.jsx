@@ -4,6 +4,7 @@ import useLevelList from "./useLevelList";
 const Home = () => {
   const { data, loading, error } = useLevelList();
 
+  if (loading) return <p>Loading...</p>;
   if (error) return <p>Data fetching error.</p>;
 
   return (
