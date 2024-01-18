@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 
-const useLevelData = () => {
-  const [levelData, setLevelData] = useState([]);
+const useLevelList = () => {
+  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLevelData([
+    setData([
       {
         levelNum: 1,
       },
@@ -19,9 +20,10 @@ const useLevelData = () => {
         levelNum: 4,
       },
     ]);
+    setLoading(false);
   }, []);
 
-  return { levelData, error };
+  return { data, loading, error };
 };
 
-export default useLevelData;
+export default useLevelList;
