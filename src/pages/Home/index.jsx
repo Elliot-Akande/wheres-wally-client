@@ -1,20 +1,20 @@
 import { Link } from "react-router-dom";
-import useLevelData from "../hooks/useLevelData";
+import useLevelList from "./useLevelList";
 
-function HomePage() {
-  const { levelData, error } = useLevelData();
+const Home = () => {
+  const { data, loading, error } = useLevelList();
 
   if (error) return <p>Data fetching error.</p>;
 
   return (
     <>
-      {levelData.map(({ levelNum }) => (
+      {data.map(({ levelNum }) => (
         <Link to={`level/${levelNum}/details`} key={levelNum}>
           Level {levelNum}
         </Link>
       ))}
     </>
   );
-}
+};
 
-export default HomePage;
+export default Home;

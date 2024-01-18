@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`HomePage > renders Level links 1`] = `
+exports[`Home > renders Level links 1`] = `
 <div>
   <a
     href="/level/1/details"
@@ -23,7 +23,7 @@ exports[`HomePage > renders Level links 1`] = `
 </div>
 `;
 
-exports[`HomePage > renders error message on useLevelData error 1`] = `
+exports[`Home > renders error message on useLevelData error 1`] = `
 <div>
   <p>
     Data fetching error.
