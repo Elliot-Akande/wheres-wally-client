@@ -1,0 +1,28 @@
+.selectionBox {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+
+  display: flex;
+  justify-content: center;
+
+  background-color: rgba(153, 205, 50, 0.357);
+  border-radius: 6px;
+  border: 2px solid rgb(107, 142, 36);
+  transform: translate(-50%, -50%);
+}
+
+.menu {
+  position: absolute;
+  bottom: -4px;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  gap: 16px;
+
+  transform: translateY(100%);
+
+  list-style: none;
+  background-color: white;
+}
