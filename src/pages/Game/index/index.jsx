@@ -3,11 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import Checklist from "../Checklist/Checklist";
 import LevelCompleteMenu from "../LevelCompleteMenu/LevelCompleteMenu";
 import TaggableImage from "../TaggableImage/TaggableImage";
+import checkAnswerCorrect from "../checkAnswerCorrect";
 import useLevelData from "../useLevelData";
-
-const checkAnswerRequest = (levelNum, answer) => {
-  return true;
-};
 
 const Game = () => {
   const { levelNum } = useParams();
@@ -33,7 +30,7 @@ const Game = () => {
     const answer = { [character]: { ...coords } };
 
     // Check answer data
-    if (!checkAnswerRequest(levelNum, answer)) {
+    if (!checkAnswerCorrect(levelNum, answer)) {
       return false;
     }
 
