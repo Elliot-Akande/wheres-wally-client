@@ -1,4 +1,4 @@
-import useLeaderboardData from "../hooks/useLeaderboardData";
+import useLeaderboardData from "./useLeaderboardData";
 import PropTypes from "prop-types";
 
 function Leaderboard({ levelNum }) {

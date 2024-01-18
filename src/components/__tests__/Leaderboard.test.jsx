@@ -1,13 +1,14 @@
 import { render } from "@testing-library/react";
 import { vi } from "vitest";
-import Leaderboard from "../../components/Leaderboard";
-import useLeaderboardData from "../../hooks/useLeaderboardData";
+import Leaderboard from "../Leaderboard/Leaderboard";
+import useLeaderboardData from "../Leaderboard/useLeaderboardData";
+import { describe, it, expect } from "vitest";
 
 const mocks = vi.hoisted(() => {
   return { useLeaderboardData: vi.fn() };
 });
 
-vi.mock("/src/hooks/useLeaderboardData.jsx", () => ({
+vi.mock("/src/components/Leaderboard/useLeaderboardData.jsx", () => ({
   default: mocks.useLeaderboardData,
 }));
 
