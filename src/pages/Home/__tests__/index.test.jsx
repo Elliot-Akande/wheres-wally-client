@@ -12,8 +12,7 @@ vi.mock("../useLevelList.jsx", () => ({
   default: mocks.useLevelList,
 }));
 
-const error = null;
-const levelData = [
+const data = [
   {
     levelNum: 1,
   },
@@ -24,11 +23,33 @@ const levelData = [
     levelNum: 3,
   },
 ];
+const loading = false;
+const error = null;
 
 describe("Home", () => {
   it("renders Level links", () => {
     mocks.useLevelList.mockReturnValue({
-      levelData,
+      data,
+      loading,
+      error,
+    });
+
+    const { container } = render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>
+    );
+
+    expect(useLevelList).toBe(mocks.useLevelList);
+    expect(useLevelList).toHaveBeenCalled();
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it("renders loading message on useLevelList loading", () => {
+    mocks.useLevelList.mockReturnValue({
+      data,
+      loading: true,
       error,
     });
 
@@ -46,7 +67,8 @@ describe("Home", () => {
 
   it("renders error message on useLevelList error", () => {
     mocks.useLevelList.mockReturnValue({
-      levelData: null,
+      data,
+      loading,
       error: new Error(),
     });
 

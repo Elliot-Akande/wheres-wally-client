@@ -23,10 +23,18 @@ exports[`Home > renders Level links 1`] = `
 </div>
 `;
 
-exports[`Home > renders error message on useLevelData error 1`] = `
+exports[`Home > renders error message on useLevelList error 1`] = `
 <div>
   <p>
     Data fetching error.
+  </p>
+</div>
+`;
+
+exports[`Home > renders loading message on useLevelList loading 1`] = `
+<div>
+  <p>
+    Loading...
   </p>
 </div>
 `;
