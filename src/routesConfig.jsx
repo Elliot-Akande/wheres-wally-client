@@ -11,8 +11,8 @@ const routesConfig = [
     errorElement: <Error />,
     children: [
       { index: true, element: <Home /> },
-      { path: "level/:levelId/details", element: <LevelDetails /> },
-      { path: "level/:levelId", element: <Game /> },
+      { path: "level/:levelNum/details", element: <LevelDetails /> },
+      { path: "level/:levelNum", element: <Game /> },
     ],
   },
 ];
