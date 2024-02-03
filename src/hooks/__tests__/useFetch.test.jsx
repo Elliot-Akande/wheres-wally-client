@@ -37,7 +37,7 @@ describe("useFetch", () => {
     });
 
     expect(result.current.data).toBe(null);
-    expect(result.current.error).toMatch(err);
+    expect(result.current.error.message).toMatch(err);
   });
 
   it("returns error on fetch with status code >= 400", async () => {
@@ -50,6 +50,6 @@ describe("useFetch", () => {
     });
 
     expect(result.current.data).toBe(null);
-    expect(result.current.error).toMatch(err);
+    expect(result.current.error.message).toMatch(err);
   });
 });

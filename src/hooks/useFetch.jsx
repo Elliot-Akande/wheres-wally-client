@@ -7,24 +7,45 @@ const useFetch = (uri, opts = {}) => {
 
   const api = import.meta.env.VITE_API_URL;
   useEffect(() => {
-    fetch(api + uri, opts)
-      .then((response) => {
+    // fetch(api + uri, opts)
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     if (!response.ok) {
+    //       const err = new Error();
+    //       err.status = response.status;
+    //       throw err;
+    //     }
+    //     setData(data);
+    //   })
+    //   .catch((err) =>
+    //     setError(
+    //       `An error occured when fetching data. ${
+    //         err.status ? `Status: ${err.status}` : ""
+    //       }`
+    //     )
+    //   )
+    //   .finally(() => setLoading(false));
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(api + uri, opts);
+        const jsonData = await response.json();
         if (!response.ok) {
-          const err = new Error();
+          const err = new Error(jsonData);
           err.status = response.status;
           throw err;
         }
-        return response.json();
-      })
-      .then((data) => setData(data))
-      .catch((err) =>
-        setError(
-          `An error occured when fetching data. ${
-            err.status ? `Status: ${err.status}` : ""
-          }`
-        )
-      )
-      .finally(() => setLoading(false));
+
+        setData(jsonData);
+      } catch (err) {
+        err.message = "An error occured when fetching data.";
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return { data, loading, error };
