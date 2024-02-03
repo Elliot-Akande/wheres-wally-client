@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import useLevelList from "./useLevelList";
+import useFetch from "../../hooks/useFetch";
 
 const Home = () => {
-  const { data, loading, error } = useLevelList();
+  const { data, loading, error } = useFetch("/levels");
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Data fetching error.</p>;
