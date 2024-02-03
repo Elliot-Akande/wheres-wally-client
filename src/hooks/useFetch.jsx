@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 
-const useFetch = (uri, opts) => {
+const useFetch = (uri, opts = {}) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const api = import.meta.env.VITE_API_URL;
   useEffect(() => {
-    fetch(uri, opts)
+    fetch(api + uri, opts)
       .then((response) => {
         if (!response.ok) {
           const err = new Error();
