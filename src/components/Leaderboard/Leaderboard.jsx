@@ -1,9 +1,6 @@
-import useLeaderboardData from "./useLeaderboardData";
 import PropTypes from "prop-types";
 
-function Leaderboard({ levelNum }) {
-  const { data, loading, error } = useLeaderboardData(levelNum);
-
+function Leaderboard({ data, loading }) {
   const formatTime = (time) => {
     const mins = Math.floor(time / 60);
     const secs = time % 60;
@@ -17,13 +14,11 @@ function Leaderboard({ levelNum }) {
       <h2>Leaderboard</h2>
       {loading ? (
         <p>Loading...</p>
-      ) : error ? (
-        <p>Data fetching error.</p>
       ) : data ? (
         <ul>
-          {data.map((entry) => (
-            <li key={entry.id}>
-              {entry.name} - {formatTime(entry.time)}
+          {data.scores.map((entry) => (
+            <li key={entry._id}>
+              {entry.name} - {formatTime(entry.score)}
             </li>
           ))}
         </ul>
@@ -35,7 +30,12 @@ function Leaderboard({ levelNum }) {
 }
 
 Leaderboard.propTypes = {
-  levelNum: PropTypes.number,
+  levelNum: PropTypes.shape({
+    _id: PropTypes.string,
+    name: PropTypes.string,
+    score: PropTypes.number,
+  }),
+  loading: PropTypes.bool,
 };
 
 export default Leaderboard;
