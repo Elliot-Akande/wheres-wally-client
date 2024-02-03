@@ -2,14 +2,14 @@ import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
 import Home from "../index.jsx";
-import useLevelList from "../useLevelList";
+import useFetch from "../../../hooks/useFetch.jsx";
 
 const mocks = vi.hoisted(() => ({
-  useLevelList: vi.fn(),
+  useFetch: vi.fn(),
 }));
 
-vi.mock("../useLevelList.jsx", () => ({
-  default: mocks.useLevelList,
+vi.mock("../../../hooks/useFetch.jsx", () => ({
+  default: mocks.useFetch,
 }));
 
 const data = [
@@ -28,7 +28,7 @@ const error = null;
 
 describe("Home", () => {
   it("renders Level links", () => {
-    mocks.useLevelList.mockReturnValue({
+    mocks.useFetch.mockReturnValue({
       data,
       loading,
       error,
@@ -40,14 +40,14 @@ describe("Home", () => {
       </MemoryRouter>
     );
 
-    expect(useLevelList).toBe(mocks.useLevelList);
-    expect(useLevelList).toHaveBeenCalled();
+    expect(useFetch).toBe(mocks.useFetch);
+    expect(useFetch).toHaveBeenCalled();
 
     expect(container).toMatchSnapshot();
   });
 
-  it("renders loading message on useLevelList loading", () => {
-    mocks.useLevelList.mockReturnValue({
+  it("renders loading message on useFetch loading", () => {
+    mocks.useFetch.mockReturnValue({
       data,
       loading: true,
       error,
@@ -59,14 +59,14 @@ describe("Home", () => {
       </MemoryRouter>
     );
 
-    expect(useLevelList).toBe(mocks.useLevelList);
-    expect(useLevelList).toHaveBeenCalled();
+    expect(useFetch).toBe(mocks.useFetch);
+    expect(useFetch).toHaveBeenCalled();
 
     expect(container).toMatchSnapshot();
   });
 
-  it("renders error message on useLevelList error", () => {
-    mocks.useLevelList.mockReturnValue({
+  it("renders error message on useFetch error", () => {
+    mocks.useFetch.mockReturnValue({
       data,
       loading,
       error: new Error(),
@@ -78,8 +78,8 @@ describe("Home", () => {
       </MemoryRouter>
     );
 
-    expect(useLevelList).toBe(mocks.useLevelList);
-    expect(useLevelList).toHaveBeenCalled();
+    expect(useFetch).toBe(mocks.useFetch);
+    expect(useFetch).toHaveBeenCalled();
 
     expect(container).toMatchSnapshot();
   });
