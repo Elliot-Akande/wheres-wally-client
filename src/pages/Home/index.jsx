@@ -5,7 +5,7 @@ const Home = () => {
   const { data, loading, error } = useFetch("/levels");
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Data fetching error.</p>;
+  if (error) return <p>Error fetching level data.</p>;
 
   return (
     <>
