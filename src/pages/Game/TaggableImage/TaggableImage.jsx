@@ -32,7 +32,7 @@ const TaggableImage = ({
     setShowIncorrectMark(true);
   };
 
-  const customCheckAnswer = (character) => {
+  const customCheckAnswer = async (character) => {
     const img = imageRef.current;
     const normalisedX = coords.x / img.width;
     const normalisedY = coords.y / img.height;
@@ -43,7 +43,7 @@ const TaggableImage = ({
       character,
     };
 
-    checkAnswer(answer) ? handleCorrectAnswer() : handleWrongAnswer();
+    (await checkAnswer(answer)) ? handleCorrectAnswer() : handleWrongAnswer();
   };
 
   const getPostitionStyles = (data) => {

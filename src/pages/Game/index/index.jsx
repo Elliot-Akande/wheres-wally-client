@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, json, useParams } from "react-router-dom";
 import Checklist from "../Checklist/Checklist";
 import LevelCompleteMenu from "../LevelCompleteMenu/LevelCompleteMenu";
 import TaggableImage from "../TaggableImage/TaggableImage";
@@ -26,14 +26,41 @@ const Game = () => {
     if (data) checkLevelComplete();
   }, [correctAnswers]);
 
-  const checkAnswer = (answer) => {
-    // Check answer data
-    // if (!checkAnswerCorrect(levelNum, answer)) {
-    //   return false;
-    // }
+  const fetchWithPromise = async (uri, opts = {}) => {
+    const api = import.meta.env.VITE_API_URL;
+    try {
+      const response = await fetch(api + uri, opts);
+      const jsonData = await response.json();
+      if (!response.ok) {
+        console.log(jsonData);
+        const err = new Error(jsonData);
+        err.status = response.status;
+        throw err;
+      }
 
-    setCorrectAnswers((pastAnswers) => [...pastAnswers, answer]);
-    return true;
+      return jsonData;
+    } catch (err) {
+      err.message = "An error occured when fetching data.";
+      return err;
+    }
+  };
+
+  const checkAnswer = async (answer) => {
+    const data = await fetchWithPromise(`/levels/${levelNum}/check-answer`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(answer),
+    });
+
+    if (!(data instanceof Error) && data.isCorrect) {
+      setCorrectAnswers((pastAnswers) => [...pastAnswers, answer]);
+      return true;
+    }
+
+    return false;
   };
 
   if (loading) return <p>Loading...</p>;
