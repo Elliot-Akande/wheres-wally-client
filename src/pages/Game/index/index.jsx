@@ -4,11 +4,11 @@ import Checklist from "../Checklist/Checklist";
 import LevelCompleteMenu from "../LevelCompleteMenu/LevelCompleteMenu";
 import TaggableImage from "../TaggableImage/TaggableImage";
 import checkAnswerCorrect from "../checkAnswerCorrect";
-import useLevelData from "../useLevelData";
+import useFetch from "../../../hooks/useFetch";
 
 const Game = () => {
   const { levelNum } = useParams();
-  const { data, loading, error } = useLevelData(levelNum);
+  const { data, loading, error } = useFetch(`/levels/${levelNum}`);
 
   const [correctAnswers, setCorrectAnswers] = useState({});
   const [levelComplete, setLevelComplete] = useState(false);
@@ -23,12 +23,11 @@ const Game = () => {
       }
     };
 
-    checkLevelComplete();
+    if (data) checkLevelComplete();
   }, [correctAnswers]);
 
   const checkAnswer = (coords, character) => {
     const answer = { [character]: { ...coords } };
-
     // Check answer data
     if (!checkAnswerCorrect(levelNum, answer)) {
       return false;
@@ -49,9 +48,9 @@ const Game = () => {
     <>
       <h1>Level {levelNum}</h1>
       <TaggableImage
-        image={data.img}
-        characters={remainingCharacters}
+        image={data.imageUrl}
         checkAnswer={checkAnswer}
+        characters={remainingCharacters}
         correctAnswers={correctAnswers}
         levelComplete={levelComplete}
       />
