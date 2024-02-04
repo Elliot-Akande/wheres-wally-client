@@ -75,16 +75,16 @@ const TaggableImage = ({
       )}
 
       {/* Correct answer markers */}
-      {Object.keys(correctAnswers).map((answer) => (
+      {correctAnswers.map((answer) => (
         <div
-          key={answer}
+          key={answer.character}
           className={styles.marker}
           style={{
-            left: correctAnswers[answer].x + "px",
-            top: correctAnswers[answer].y + "px",
+            left: answer.xCoord + "px",
+            top: answer.yCoord + "px",
           }}
         >
-          {answer}
+          {answer.character}
         </div>
       ))}
     </div>

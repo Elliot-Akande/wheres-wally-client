@@ -10,15 +10,15 @@ const Game = () => {
   const { levelNum } = useParams();
   const { data, loading, error } = useFetch(`/levels/${levelNum}`);
 
-  const [correctAnswers, setCorrectAnswers] = useState({});
+  const [correctAnswers, setCorrectAnswers] = useState([]);
   const [levelComplete, setLevelComplete] = useState(false);
 
   useEffect(() => {
     const checkLevelComplete = () => {
       const allCharacters = data.characters.toSorted();
-      const foundCharacters = Object.keys(correctAnswers).toSorted();
+      const foundCharacters = correctAnswers.toSorted();
 
-      if (allCharacters.toString() === foundCharacters.toString()) {
+      if (foundCharacters.length === 5) {
         setLevelComplete(true);
       }
     };
@@ -27,14 +27,12 @@ const Game = () => {
   }, [correctAnswers]);
 
   const checkAnswer = (answer) => {
-    console.log(answer);
-
     // Check answer data
     // if (!checkAnswerCorrect(levelNum, answer)) {
     //   return false;
     // }
 
-    setCorrectAnswers((pastAnswers) => ({ ...pastAnswers, ...answer }));
+    setCorrectAnswers((pastAnswers) => [...pastAnswers, answer]);
     return true;
   };
 
@@ -42,7 +40,8 @@ const Game = () => {
   if (error) return <p>Error loading data.</p>;
 
   const remainingCharacters = data.characters.filter(
-    (character) => !Object.keys(correctAnswers).includes(character)
+    (character) =>
+      !correctAnswers.find((answer) => character.name === answer.character)
   );
 
   return (
