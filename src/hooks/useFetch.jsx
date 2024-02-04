@@ -7,25 +7,6 @@ const useFetch = (uri, opts = {}) => {
 
   const api = import.meta.env.VITE_API_URL;
   useEffect(() => {
-    // fetch(api + uri, opts)
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     if (!response.ok) {
-    //       const err = new Error();
-    //       err.status = response.status;
-    //       throw err;
-    //     }
-    //     setData(data);
-    //   })
-    //   .catch((err) =>
-    //     setError(
-    //       `An error occured when fetching data. ${
-    //         err.status ? `Status: ${err.status}` : ""
-    //       }`
-    //     )
-    //   )
-    //   .finally(() => setLoading(false));
-
     const fetchData = async () => {
       try {
         const response = await fetch(api + uri, opts);
