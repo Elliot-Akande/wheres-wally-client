@@ -2,7 +2,7 @@ import ChecklistItem from "../ChecklistItem/ChecklistItem";
 
 const Checklist = ({ characters, correctAnswers }) => {
   const isFound = (character) => {
-    return Object.prototype.hasOwnProperty.call(correctAnswers, character.name);
+    return correctAnswers.find((answer) => answer.character === character);
   };
 
   return (
@@ -13,7 +13,7 @@ const Checklist = ({ characters, correctAnswers }) => {
           <ChecklistItem
             key={character.name}
             character={character.name}
-            found={isFound(character)}
+            found={isFound(character.name)}
           />
         ))}
       </ul>
