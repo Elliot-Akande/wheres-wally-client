@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import SelectionBox from "../SelectionBox/SelectionBox";
 import styles from "./TaggableImage.module.css";
 
@@ -11,6 +11,7 @@ const TaggableImage = ({
 }) => {
   const [coords, setCoords] = useState(null);
   const [showIncorrectMark, setShowIncorrectMark] = useState(false);
+  const imageRef = useRef(null);
 
   const handleClick = (e) => {
     if (levelComplete) return;
@@ -32,14 +33,27 @@ const TaggableImage = ({
   };
 
   const customCheckAnswer = (character) => {
-    checkAnswer(coords, character)
-      ? handleCorrectAnswer()
-      : handleWrongAnswer();
+    const img = imageRef.current;
+    const normalisedX = coords.x / img.width;
+    const normalisedY = coords.y / img.height;
+
+    const answer = {
+      xCoord: Math.round(img.naturalWidth * normalisedX),
+      yCoord: Math.round(img.naturalHeight * normalisedY),
+      character,
+    };
+
+    checkAnswer(answer) ? handleCorrectAnswer() : handleWrongAnswer();
   };
 
   return (
     <div className={styles.imageContainer} onClick={handleClick}>
-      <img src={imageUrl} alt="Where's Wally Game" className={styles.image} />
+      <img
+        src={imageUrl}
+        alt="Where's Wally Game"
+        className={styles.image}
+        ref={imageRef}
+      />
 
       {/* SelectionBox */}
       {showIncorrectMark ? (

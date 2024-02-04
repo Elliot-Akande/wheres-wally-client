@@ -26,12 +26,13 @@ const Game = () => {
     if (data) checkLevelComplete();
   }, [correctAnswers]);
 
-  const checkAnswer = (coords, character) => {
-    const answer = { [character]: { ...coords } };
+  const checkAnswer = (answer) => {
+    console.log(answer);
+
     // Check answer data
-    if (!checkAnswerCorrect(levelNum, answer)) {
-      return false;
-    }
+    // if (!checkAnswerCorrect(levelNum, answer)) {
+    //   return false;
+    // }
 
     setCorrectAnswers((pastAnswers) => ({ ...pastAnswers, ...answer }));
     return true;
