@@ -46,6 +46,17 @@ const TaggableImage = ({
     checkAnswer(answer) ? handleCorrectAnswer() : handleWrongAnswer();
   };
 
+  const getPostitionStyles = (data) => {
+    const img = imageRef.current;
+    const xCoord = data.xCoord * (img.width / img.naturalWidth);
+    const yCoord = data.yCoord * (img.height / img.naturalHeight);
+
+    return {
+      left: `${xCoord}px`,
+      top: `${yCoord}px`,
+    };
+  };
+
   return (
     <div className={styles.imageContainer} onClick={handleClick}>
       <img
@@ -79,10 +90,7 @@ const TaggableImage = ({
         <div
           key={answer.character}
           className={styles.marker}
-          style={{
-            left: answer.xCoord + "px",
-            top: answer.yCoord + "px",
-          }}
+          style={getPostitionStyles(answer)}
         >
           {answer.character}
         </div>
