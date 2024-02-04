@@ -48,7 +48,7 @@ const Game = () => {
     <>
       <h1>Level {levelNum}</h1>
       <TaggableImage
-        image={data.imageUrl}
+        imageUrl={data.imageUrl}
         checkAnswer={checkAnswer}
         characters={remainingCharacters}
         correctAnswers={correctAnswers}

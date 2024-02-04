@@ -1,8 +1,11 @@
-.image {
-  height: 400px;
-  width: 600px;
+.imageContainer {
   background-color: tomato;
   position: relative;
+  width: min-content;
+}
+
+.image {
+  max-width: 90vw;
 }
 
 .marker {

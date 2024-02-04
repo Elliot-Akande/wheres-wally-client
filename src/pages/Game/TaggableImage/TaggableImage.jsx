@@ -3,7 +3,7 @@ import SelectionBox from "../SelectionBox/SelectionBox";
 import styles from "./TaggableImage.module.css";
 
 const TaggableImage = ({
-  image,
+  imageUrl,
   characters,
   checkAnswer,
   correctAnswers,
@@ -38,7 +38,9 @@ const TaggableImage = ({
   };
 
   return (
-    <div className={styles.image} onClick={handleClick}>
+    <div className={styles.imageContainer} onClick={handleClick}>
+      <img src={imageUrl} alt="Where's Wally Game" className={styles.image} />
+
       {/* SelectionBox */}
       {showIncorrectMark ? (
         <div
