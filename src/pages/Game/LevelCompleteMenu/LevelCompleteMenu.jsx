@@ -18,7 +18,9 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
         <div className={styles.menu}>
           <h2>Level complete!</h2>
           <p>There was an error contacting the server.</p>
-          <button type="button">Home</button>
+          <button type="button" onClick={() => navigate("/")}>
+            Home
+          </button>
         </div>
       </div>
     );
@@ -36,37 +38,46 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
       body: JSON.stringify({ name }),
     });
 
-    if (!(response instanceof Error)) {
-      setUpdatedData(response);
-    }
+    setUpdatedData(response);
   };
 
   const getMenuBody = () => {
-    if (updatedData !== null) {
+    if (updatedData === null) {
       return (
         <>
-          <Leaderboard data={updatedData} loading={loading} />
-          <button onClick={() => navigate("/")}>Finish</button>
+          <Leaderboard data={data} loading={loading} />
+          <p>Your Score - {formatTime(score)}</p>
+          <form action="">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <button type="submit" onClick={handleSubmit}>
+              Submit
+            </button>
+          </form>
+        </>
+      );
+    }
+
+    if (updatedData instanceof Error) {
+      return (
+        <>
+          <p>There was an error contacting the server.</p>
+          <button type="button" onClick={() => navigate("/")}>
+            Home
+          </button>
         </>
       );
     }
 
     return (
       <>
-        <Leaderboard data={data} loading={loading} />
-        <p>Your Score - {formatTime(score)}</p>
-        <form action="">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <button type="submit" onClick={handleSubmit}>
-            Submit
-          </button>
-        </form>
+        <Leaderboard data={updatedData} loading={loading} />
+        <button onClick={() => navigate("/")}>Finish</button>
       </>
     );
   };
