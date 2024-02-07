@@ -36,7 +36,7 @@ const Game = () => {
   }, [correctAnswers]);
 
   const checkAnswer = async (answer) => {
-    const data = await fetchAsync(`/levels/${levelNum}/check-answer`, {
+    const response = await fetchAsync(`/levels/${levelNum}/check-answer`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -45,8 +45,16 @@ const Game = () => {
       body: JSON.stringify(answer),
     });
 
-    if (!(data instanceof Error) && data.isCorrect) {
-      setCorrectAnswers((pastAnswers) => [...pastAnswers, answer]);
+    if (!(response instanceof Error) && response.isCorrect) {
+      // Add imageUrl for displaying correct answers on game image.
+      const imageUrl = data.characters.find(
+        (character) => character.name === answer.character
+      ).imageUrl;
+
+      setCorrectAnswers((pastAnswers) => [
+        ...pastAnswers,
+        { ...answer, imageUrl },
+      ]);
       return true;
     }
 
