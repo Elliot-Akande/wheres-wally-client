@@ -27,7 +27,12 @@ const SelectionMenu = ({ characters, checkAnswer }) => {
   return (
     <ul className={styles.menu}>
       {characters.map((character) => (
-        <li onClick={handleClick} key={character.name}>
+        <li onClick={handleClick} key={character.name} className={styles.item}>
+          <img
+            src={character.imageUrl}
+            alt={character.name}
+            className={styles.img}
+          />
           {character.name}
         </li>
       ))}

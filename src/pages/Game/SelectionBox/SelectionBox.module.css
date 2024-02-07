@@ -13,16 +13,42 @@
 }
 
 .menu {
-  position: absolute;
-  bottom: -4px;
   margin: 0;
   padding: 0;
 
-  display: flex;
-  gap: 16px;
+  position: absolute;
+  top: 50%;
+  left: 100%;
 
-  transform: translateY(100%);
+  display: flex;
+  flex-direction: column;
 
   list-style: none;
   background-color: white;
+  border-radius: 8px;
+
+  transform: translate(10px, -50%);
+  overflow: hidden;
+}
+
+.item {
+  padding: 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  cursor: pointer;
+}
+
+.item:hover {
+  background-color: #ebebeb;
+}
+
+.img {
+  height: 36px;
+  width: 36px;
+
+  flex-shrink: 0;
+  object-fit: contain;
 }
