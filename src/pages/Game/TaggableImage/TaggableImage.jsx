@@ -92,7 +92,7 @@ const TaggableImage = ({
           className={styles.marker}
           style={getPostitionStyles(answer)}
         >
-          {answer.character}
+          <img src={answer.imageUrl} className={styles.markerImg} />
         </div>
       ))}
     </div>
