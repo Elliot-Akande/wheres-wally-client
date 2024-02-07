@@ -1,14 +1,7 @@
+import formatTime from "../../utils/formatTime";
 import PropTypes from "prop-types";
 
 function Leaderboard({ data, loading }) {
-  const formatTime = (time) => {
-    const mins = Math.floor(time / 60);
-    const secs = time % 60;
-    const string = `${mins}:${secs}`;
-
-    return string.padStart(5, 0);
-  };
-
   return (
     <div>
       <h2>Leaderboard</h2>
