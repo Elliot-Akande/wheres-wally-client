@@ -8,6 +8,7 @@ import styles from "./LevelCompleteMenu.module.css";
 
 const LevelCompleteMenu = ({ levelNum, score, token }) => {
   const { data, loading, error } = useFetch(`/levels/${levelNum}/leaderboard`);
+  const [updatedData, setUpdatedData] = useState(null);
   const [name, setName] = useState("Anon");
   const navigate = useNavigate();
 
@@ -36,14 +37,22 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
     });
 
     if (!(response instanceof Error)) {
-      navigate("/");
+      setUpdatedData(response);
     }
   };
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.menu}>
-        <h2>Level complete!</h2>
+  const getMenuBody = () => {
+    if (updatedData !== null) {
+      return (
+        <>
+          <Leaderboard data={updatedData} loading={loading} />
+          <button onClick={() => navigate("/")}>Finish</button>
+        </>
+      );
+    }
+
+    return (
+      <>
         <Leaderboard data={data} loading={loading} />
         <p>Your Score - {formatTime(score)}</p>
         <form action="">
@@ -55,9 +64,18 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
             onChange={(e) => setName(e.target.value)}
           />
           <button type="submit" onClick={handleSubmit}>
-            Finish
+            Submit
           </button>
         </form>
+      </>
+    );
+  };
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.menu}>
+        <h2>Level complete!</h2>
+        {getMenuBody()}
       </div>
     </div>
   );
