@@ -1,3 +1,4 @@
+import styles from "./Checklist.module.css";
 import ChecklistItem from "../ChecklistItem/ChecklistItem";
 
 const Checklist = ({ characters, correctAnswers }) => {
@@ -8,11 +9,11 @@ const Checklist = ({ characters, correctAnswers }) => {
   return (
     <>
       <h2>Checklist:</h2>
-      <ul>
+      <ul className={styles.list}>
         {characters.map((character) => (
           <ChecklistItem
             key={character.name}
-            character={character.name}
+            character={character}
             found={isFound(character.name)}
           />
         ))}

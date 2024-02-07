@@ -1,0 +1,22 @@
+.image {
+  max-height: 50px;
+  max-width: 50px;
+}
+
+.listItem {
+  padding: 8px 16px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.listItemComplete {
+  composes: listItem;
+
+  opacity: 0.5;
+  text-decoration: line-through;
+}
