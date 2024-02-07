@@ -1,52 +1,42 @@
 import { useEffect, useState } from "react";
-import { Link, json, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import useFetch from "../../../hooks/useFetch";
+import fetchAsync from "../../../utils/fetchAsync";
 import Checklist from "../Checklist/Checklist";
 import LevelCompleteMenu from "../LevelCompleteMenu/LevelCompleteMenu";
 import TaggableImage from "../TaggableImage/TaggableImage";
-import checkAnswerCorrect from "../checkAnswerCorrect";
-import useFetch from "../../../hooks/useFetch";
 
 const Game = () => {
   const { levelNum } = useParams();
   const { data, loading, error } = useFetch(`/levels/${levelNum}`);
 
   const [correctAnswers, setCorrectAnswers] = useState([]);
-  const [levelComplete, setLevelComplete] = useState(false);
+  const [completionData, setCompletionData] = useState(null);
 
   useEffect(() => {
-    const checkLevelComplete = () => {
-      const allCharacters = data.characters.toSorted();
-      const foundCharacters = correctAnswers.toSorted();
+    const checkLevelComplete = async () => {
+      const response = await fetchAsync(`/levels/${levelNum}/check-complete`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${data.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ answers: correctAnswers }),
+      });
 
-      if (foundCharacters.length === 5) {
-        setLevelComplete(true);
+      if (!(response instanceof Error) && response.isComplete) {
+        setCompletionData(response);
       }
     };
 
-    if (data) checkLevelComplete();
+    if (data !== null && correctAnswers.length === data.characters.length) {
+      checkLevelComplete();
+    }
   }, [correctAnswers]);
 
-  const fetchWithPromise = async (uri, opts = {}) => {
-    const api = import.meta.env.VITE_API_URL;
-    try {
-      const response = await fetch(api + uri, opts);
-      const jsonData = await response.json();
-      if (!response.ok) {
-        console.log(jsonData);
-        const err = new Error(jsonData);
-        err.status = response.status;
-        throw err;
-      }
-
-      return jsonData;
-    } catch (err) {
-      err.message = "An error occured when fetching data.";
-      return err;
-    }
-  };
-
   const checkAnswer = async (answer) => {
-    const data = await fetchWithPromise(`/levels/${levelNum}/check-answer`, {
+    const data = await fetchAsync(`/levels/${levelNum}/check-answer`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -79,12 +69,18 @@ const Game = () => {
         checkAnswer={checkAnswer}
         characters={remainingCharacters}
         correctAnswers={correctAnswers}
-        levelComplete={levelComplete}
+        levelComplete={completionData !== null}
       />
       <Checklist characters={data.characters} correctAnswers={correctAnswers} />
       <Link to="/">Quit level</Link>
 
-      {levelComplete && <LevelCompleteMenu />}
+      {completionData !== null && (
+        <LevelCompleteMenu
+          levelNum={levelNum}
+          token={completionData.token}
+          score={completionData.score}
+        />
+      )}
     </>
   );
 };
