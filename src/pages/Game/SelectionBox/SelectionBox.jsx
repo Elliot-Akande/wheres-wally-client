@@ -1,18 +1,45 @@
 import styles from "./SelectionBox.module.css";
 
-const SelectionBox = ({ coords, characters, checkAnswer }) => {
-  if (!coords) return null;
+const SelectionBox = ({
+  clickedCoords,
+  hoverCoords,
+  characters,
+  checkAnswer,
+  imageUrl,
+  imageDimensions,
+}) => {
+  if (!clickedCoords && !hoverCoords) return null;
+
+  const zoomLevel = 1.5;
+  const magnifierHeight = 80;
+  const magnifierWidth = 80;
+  const coords = clickedCoords !== null ? clickedCoords : hoverCoords;
 
   return (
     <>
       <div
         className={styles.selectionBox}
         style={{
-          left: coords.x + "px",
-          top: coords.y + "px",
+          height: `${magnifierHeight}px`,
+          width: `${magnifierWidth}px`,
+          top: `${coords.y - magnifierHeight / 2}px`,
+          left: `${coords.x - magnifierWidth / 2}px`,
+
+          backgroundImage: `url('${imageUrl}')`,
+          backgroundSize: `${imageDimensions.width * zoomLevel}px ${
+            imageDimensions.height * zoomLevel
+          }px`,
+          backgroundPositionX: `${
+            -coords.x * zoomLevel + magnifierWidth / 2
+          }px`,
+          backgroundPositionY: `${
+            -coords.y * zoomLevel + magnifierHeight / 2
+          }px`,
         }}
       >
-        <SelectionMenu checkAnswer={checkAnswer} characters={characters} />
+        {clickedCoords !== null && (
+          <SelectionMenu checkAnswer={checkAnswer} characters={characters} />
+        )}
       </div>
     </>
   );

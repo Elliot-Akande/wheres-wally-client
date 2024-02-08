@@ -9,7 +9,8 @@ const TaggableImage = ({
   correctAnswers,
   levelComplete,
 }) => {
-  const [coords, setCoords] = useState(null);
+  const [clickedCoords, setClickedCoords] = useState(null);
+  const [hoverCoords, setHoverCoords] = useState(null);
   const [showIncorrectMark, setShowIncorrectMark] = useState(false);
   const imageRef = useRef(null);
 
@@ -20,12 +21,12 @@ const TaggableImage = ({
     const x = Math.round(e.clientX - rect.left);
     const y = Math.round(e.clientY - rect.top);
 
-    setCoords({ x, y });
+    setClickedCoords({ x, y });
     setShowIncorrectMark(false);
   };
 
   const handleCorrectAnswer = () => {
-    setCoords(null);
+    setClickedCoords(null);
   };
 
   const handleWrongAnswer = () => {
@@ -34,8 +35,8 @@ const TaggableImage = ({
 
   const customCheckAnswer = async (character) => {
     const img = imageRef.current;
-    const normalisedX = coords.x / img.width;
-    const normalisedY = coords.y / img.height;
+    const normalisedX = clickedCoords.x / img.width;
+    const normalisedY = clickedCoords.y / img.height;
 
     const answer = {
       xCoord: Math.round(img.naturalWidth * normalisedX),
@@ -57,13 +58,28 @@ const TaggableImage = ({
     };
   };
 
+  const getImgDimensions = () => {
+    if (imageRef.current === null) return { width: 0, height: 0 };
+
+    const { width, height } = imageRef.current;
+    return { width, height };
+  };
+
   return (
-    <div className={styles.imageContainer} onClick={handleClick}>
+    <div className={styles.imageContainer}>
       <img
         src={imageUrl}
         alt="Where's Wally Game"
         className={styles.image}
         ref={imageRef}
+        onClick={handleClick}
+        onMouseMove={(e) => {
+          const { top, left } = e.currentTarget.getBoundingClientRect();
+          const x = Math.round(e.pageX - left - scrollX);
+          const y = Math.round(e.pageY - top - scrollY);
+          setHoverCoords({ x, y });
+        }}
+        onMouseLeave={() => setHoverCoords(null)}
       />
 
       {/* SelectionBox */}
@@ -71,17 +87,20 @@ const TaggableImage = ({
         <div
           className={styles.incorrect}
           style={{
-            left: coords.x + "px",
-            top: coords.y + "px",
+            left: clickedCoords.x + "px",
+            top: clickedCoords.y + "px",
           }}
         >
           X
         </div>
       ) : (
         <SelectionBox
-          coords={coords}
+          clickedCoords={clickedCoords}
+          hoverCoords={hoverCoords}
           characters={characters}
           checkAnswer={customCheckAnswer}
+          imageDimensions={getImgDimensions()}
+          imageUrl={imageUrl}
         />
       )}
 
