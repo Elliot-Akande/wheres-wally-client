@@ -78,6 +78,13 @@ const TaggableImage = ({
     return { width, height };
   };
 
+  const menuDirection = (() => {
+    if (clickedCoords && clickedCoords.x < getImgDimensions().width / 2) {
+      return "left";
+    }
+    return "right";
+  })();
+
   return (
     <div
       className={styles.imageContainer}
@@ -89,7 +96,7 @@ const TaggableImage = ({
         setHoverCoords({ x, y });
       }}
       onMouseEnter={() => setMagnifierBehaviour("hover")}
-      onMouseLeave={() => setMagnifierBehaviour("hidden")}
+      // onMouseLeave={() => setMagnifierBehaviour("hidden")}
     >
       <img
         src={imageUrl}
@@ -97,6 +104,17 @@ const TaggableImage = ({
         className={styles.image}
         ref={imageRef}
       />
+
+      {/* Correct answer markers */}
+      {correctAnswers.map((answer) => (
+        <div
+          key={answer.character}
+          className={styles.marker}
+          style={getPostitionStyles(answer)}
+        >
+          <img src={answer.imageUrl} className={styles.markerImg} />
+        </div>
+      ))}
 
       <SelectionBox
         clickedCoords={clickedCoords}
@@ -106,6 +124,7 @@ const TaggableImage = ({
         checkAnswer={customCheckAnswer}
         imageDimensions={getImgDimensions()}
         imageUrl={imageUrl}
+        menuDirection={menuDirection}
       />
 
       {showIncorrectMark && (
@@ -119,26 +138,6 @@ const TaggableImage = ({
           X
         </div>
       )}
-
-      {/* <SelectionBox
-          clickedCoords={clickedCoords}
-          hoverCoords={hoverCoords}
-          characters={characters}
-          checkAnswer={customCheckAnswer}
-          imageDimensions={getImgDimensions()}
-          imageUrl={imageUrl}
-        /> */}
-
-      {/* Correct answer markers */}
-      {correctAnswers.map((answer) => (
-        <div
-          key={answer.character}
-          className={styles.marker}
-          style={getPostitionStyles(answer)}
-        >
-          <img src={answer.imageUrl} className={styles.markerImg} />
-        </div>
-      ))}
     </div>
   );
 };

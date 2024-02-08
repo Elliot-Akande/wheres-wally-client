@@ -1,11 +1,15 @@
 .imageContainer {
-  background-color: tomato;
+  width: 100%;
+  padding-bottom: 96px;
   position: relative;
-  width: min-content;
+
+  border-radius: 16px;
 }
 
 .image {
-  max-width: 90vw;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 16px;
 }
 
 .marker {
@@ -18,15 +22,15 @@
   justify-content: center;
 
   border-radius: 50px;
-  background-color: purple;
-  box-shadow: 0 0 8px 8px purple;
+  background-color: var(--accent);
+  box-shadow: 0 0 14px 14px var(--accent);
 
   transform: translate(-50%, -50%);
 }
 
 .markerImg {
-  max-height: 240%;
-  max-width: 240%;
+  max-height: 350%;
+  max-width: 350%;
 }
 
 .incorrect {
@@ -39,8 +43,8 @@
   justify-content: center;
 
   border-radius: 50px;
-  background-color: rgb(214, 33, 33);
-  box-shadow: 0 0 2px 2px rgb(214, 33, 33);
+  background-color: var(--error);
+  box-shadow: 0 0 2px 2px var(--error);
   color: white;
   font-weight: bold;
 

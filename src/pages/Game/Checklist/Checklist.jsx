@@ -7,18 +7,15 @@ const Checklist = ({ characters, correctAnswers }) => {
   };
 
   return (
-    <>
-      <h2>Checklist:</h2>
-      <ul className={styles.list}>
-        {characters.map((character) => (
-          <ChecklistItem
-            key={character.name}
-            character={character}
-            found={isFound(character.name)}
-          />
-        ))}
-      </ul>
-    </>
+    <ul className={styles.list}>
+      {characters.map((character) => (
+        <ChecklistItem
+          key={character.name}
+          character={character}
+          found={isFound(character.name)}
+        />
+      ))}
+    </ul>
   );
 };
 

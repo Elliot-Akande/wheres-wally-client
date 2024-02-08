@@ -5,6 +5,7 @@ import fetchAsync from "../../../utils/fetchAsync";
 import Checklist from "../Checklist/Checklist";
 import LevelCompleteMenu from "../LevelCompleteMenu/LevelCompleteMenu";
 import TaggableImage from "../TaggableImage/TaggableImage";
+import styles from "./index.module.css";
 
 const Game = () => {
   const { levelNum } = useParams();
@@ -71,7 +72,13 @@ const Game = () => {
 
   return (
     <>
-      <h1>Level {levelNum}</h1>
+      <div className={styles.topContainer}>
+        <h1 className={styles.title}>Level {levelNum}</h1>
+        <Checklist
+          characters={data.characters}
+          correctAnswers={correctAnswers}
+        />
+      </div>
       <TaggableImage
         imageUrl={data.imageUrl}
         checkAnswer={checkAnswer}
@@ -79,8 +86,6 @@ const Game = () => {
         correctAnswers={correctAnswers}
         levelComplete={completionData !== null}
       />
-      <Checklist characters={data.characters} correctAnswers={correctAnswers} />
-      <Link to="/">Quit level</Link>
 
       {completionData !== null && (
         <LevelCompleteMenu

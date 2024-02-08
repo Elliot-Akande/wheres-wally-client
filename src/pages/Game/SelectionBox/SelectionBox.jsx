@@ -8,6 +8,7 @@ const SelectionBox = ({
   checkAnswer,
   imageUrl,
   imageDimensions,
+  menuDirection,
 }) => {
   if (magnifierBehaviour === "hidden") return null;
 
@@ -39,21 +40,29 @@ const SelectionBox = ({
         }}
       >
         {magnifierBehaviour === "clicked" && (
-          <SelectionMenu checkAnswer={checkAnswer} characters={characters} />
+          <SelectionMenu
+            checkAnswer={checkAnswer}
+            characters={characters}
+            menuDirection={menuDirection}
+          />
         )}
       </div>
     </>
   );
 };
 
-const SelectionMenu = ({ characters, checkAnswer }) => {
+const SelectionMenu = ({ characters, checkAnswer, menuDirection }) => {
   const handleClick = (e) => {
     e.stopPropagation();
     checkAnswer(e.currentTarget.innerText);
   };
 
   return (
-    <ul className={styles.menu}>
+    <ul
+      className={`${styles.menu} ${
+        menuDirection === "left" ? styles.menuLeft : ""
+      }`}
+    >
       {characters.map((character) => (
         <li onClick={handleClick} key={character.name} className={styles.item}>
           <img
