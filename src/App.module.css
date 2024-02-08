@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Honk";
+  src: url(./assets/Honk-Regular.ttf);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  padding: 10px 20px;
+  width: 100%;
+  background-color: var(--neutral-700);
+}
+
+.link {
+  font-size: 40px;
+  font-weight: bold;
+  font-family: "Honk", system-ui;
+  color: var(--neutral-700);
+}
