@@ -11,11 +11,17 @@ const TaggableImage = ({
 }) => {
   const [clickedCoords, setClickedCoords] = useState(null);
   const [hoverCoords, setHoverCoords] = useState(null);
+  const [magnifierBehaviour, setMagnifierBehaviour] = useState("hidden");
   const [showIncorrectMark, setShowIncorrectMark] = useState(false);
   const imageRef = useRef(null);
 
   const handleClick = (e) => {
     if (levelComplete) return;
+
+    if (magnifierBehaviour === "clicked") {
+      setMagnifierBehaviour("hover");
+      return;
+    }
 
     const rect = e.currentTarget.getBoundingClientRect();
     const x = Math.round(e.clientX - rect.left);
@@ -23,17 +29,24 @@ const TaggableImage = ({
 
     setClickedCoords({ x, y });
     setShowIncorrectMark(false);
+    setMagnifierBehaviour("clicked");
   };
 
   const handleCorrectAnswer = () => {
-    setClickedCoords(null);
+    setMagnifierBehaviour("hover");
   };
 
   const handleWrongAnswer = () => {
     setShowIncorrectMark(true);
+    setMagnifierBehaviour("hover");
+    setTimeout(() => {
+      setShowIncorrectMark(false);
+    }, 1000);
   };
 
   const customCheckAnswer = async (character) => {
+    setMagnifierBehaviour("hover");
+
     const img = imageRef.current;
     const normalisedX = clickedCoords.x / img.width;
     const normalisedY = clickedCoords.y / img.height;
@@ -66,24 +79,36 @@ const TaggableImage = ({
   };
 
   return (
-    <div className={styles.imageContainer}>
+    <div
+      className={styles.imageContainer}
+      onClick={handleClick}
+      onMouseMove={(e) => {
+        const { top, left } = e.currentTarget.getBoundingClientRect();
+        const x = Math.round(e.pageX - left - scrollX);
+        const y = Math.round(e.pageY - top - scrollY);
+        setHoverCoords({ x, y });
+      }}
+      onMouseEnter={() => setMagnifierBehaviour("hover")}
+      onMouseLeave={() => setMagnifierBehaviour("hidden")}
+    >
       <img
         src={imageUrl}
         alt="Where's Wally Game"
         className={styles.image}
         ref={imageRef}
-        onClick={handleClick}
-        onMouseMove={(e) => {
-          const { top, left } = e.currentTarget.getBoundingClientRect();
-          const x = Math.round(e.pageX - left - scrollX);
-          const y = Math.round(e.pageY - top - scrollY);
-          setHoverCoords({ x, y });
-        }}
-        onMouseLeave={() => setHoverCoords(null)}
       />
 
-      {/* SelectionBox */}
-      {showIncorrectMark ? (
+      <SelectionBox
+        clickedCoords={clickedCoords}
+        hoverCoords={hoverCoords}
+        magnifierBehaviour={magnifierBehaviour}
+        characters={characters}
+        checkAnswer={customCheckAnswer}
+        imageDimensions={getImgDimensions()}
+        imageUrl={imageUrl}
+      />
+
+      {showIncorrectMark && (
         <div
           className={styles.incorrect}
           style={{
@@ -93,16 +118,16 @@ const TaggableImage = ({
         >
           X
         </div>
-      ) : (
-        <SelectionBox
+      )}
+
+      {/* <SelectionBox
           clickedCoords={clickedCoords}
           hoverCoords={hoverCoords}
           characters={characters}
           checkAnswer={customCheckAnswer}
           imageDimensions={getImgDimensions()}
           imageUrl={imageUrl}
-        />
-      )}
+        /> */}
 
       {/* Correct answer markers */}
       {correctAnswers.map((answer) => (

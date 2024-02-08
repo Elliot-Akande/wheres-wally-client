@@ -3,17 +3,18 @@ import styles from "./SelectionBox.module.css";
 const SelectionBox = ({
   clickedCoords,
   hoverCoords,
+  magnifierBehaviour,
   characters,
   checkAnswer,
   imageUrl,
   imageDimensions,
 }) => {
-  if (!clickedCoords && !hoverCoords) return null;
+  if (magnifierBehaviour === "hidden") return null;
 
   const zoomLevel = 1.5;
   const magnifierHeight = 80;
   const magnifierWidth = 80;
-  const coords = clickedCoords !== null ? clickedCoords : hoverCoords;
+  const coords = magnifierBehaviour === "clicked" ? clickedCoords : hoverCoords;
 
   return (
     <>
@@ -37,7 +38,7 @@ const SelectionBox = ({
           }px`,
         }}
       >
-        {clickedCoords !== null && (
+        {magnifierBehaviour === "clicked" && (
           <SelectionMenu checkAnswer={checkAnswer} characters={characters} />
         )}
       </div>
