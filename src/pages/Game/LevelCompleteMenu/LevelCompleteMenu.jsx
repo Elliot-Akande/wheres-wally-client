@@ -45,17 +45,27 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
     if (updatedData === null) {
       return (
         <>
+          <p className={styles.score}>
+            Your Score - <b>{formatTime(score)}</b>
+          </p>
           <Leaderboard data={data} loading={loading} />
-          <p>Your Score - {formatTime(score)}</p>
-          <form action="">
-            <label htmlFor="name">Name</label>
+          <form className={styles.form}>
+            <label htmlFor="name" className={styles.label}>
+              Name
+            </label>
             <input
               type="text"
               id="name"
+              className={styles.input}
+              maxLength={32}
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            <button type="submit" onClick={handleSubmit}>
+            <button
+              type="submit"
+              className={styles.button}
+              onClick={handleSubmit}
+            >
               Submit
             </button>
           </form>
@@ -67,7 +77,11 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
       return (
         <>
           <p>There was an error contacting the server.</p>
-          <button type="button" onClick={() => navigate("/")}>
+          <button
+            type="button"
+            onClick={() => navigate("/")}
+            className={styles.button}
+          >
             Home
           </button>
         </>
@@ -77,7 +91,9 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
     return (
       <>
         <Leaderboard data={updatedData} loading={loading} />
-        <button onClick={() => navigate("/")}>Finish</button>
+        <button onClick={() => navigate("/")} className={styles.button}>
+          Finish
+        </button>
       </>
     );
   };
@@ -85,7 +101,7 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
   return (
     <div className={styles.container}>
       <div className={styles.menu}>
-        <h2>Level complete!</h2>
+        <h1 className={styles.heading}>LEVEL COMPLETE!</h1>
         {getMenuBody()}
       </div>
     </div>
