@@ -7,6 +7,8 @@
   --neutral-100: hsl(285, 100%, 98%);
 
   --accent: hsl(288, 70%, 49%);
+  --accent-dark: hsl(288, 92%, 19%);
+
   --error: hsl(0, 70%, 49%);
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
