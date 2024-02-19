@@ -1,0 +1,53 @@
+.container {
+  width: 260px;
+  padding: 16px;
+
+  background-color: var(--neutral-500);
+  border-radius: 8px;
+}
+
+.heading {
+  margin: 0;
+  padding-bottom: 16px;
+}
+
+.status {
+  margin: 0;
+}
+
+.list {
+  margin: 0;
+  padding: 8px;
+  height: 180px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  overflow-y: scroll;
+
+  list-style: none;
+  background-color: var(--neutral-400);
+  border-radius: 4px;
+}
+
+.item {
+  height: max-content;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+
+  border-bottom: 1px solid var(--neutral-700);
+}
+
+.name {
+  flex: 1;
+  white-space: nowrap;
+  overflow-x: clip;
+  text-overflow: ellipsis;
+}
+
+.score {
+  text-align: end;
+}
