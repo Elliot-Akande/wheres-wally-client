@@ -1,0 +1,48 @@
+.container {
+  margin: 48px 0;
+  padding: 32px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  background-color: var(--neutral-700);
+  border-radius: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  margin: 0;
+}
+
+.start,
+.back {
+  padding: 8px 16px;
+
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 30px;
+
+  transition: 0.1s;
+}
+
+.start {
+  color: var(--neutral-100);
+  background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+}
+
+.back {
+  align-self: center;
+  color: var(--neutral-100);
+  background-color: var(--neutral-500);
+}
+
+.start:hover,
+.back:hover {
+  transform: scale(1.05);
+}

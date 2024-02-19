@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import Leaderboard from "../../components/Leaderboard/Leaderboard";
 import useFetch from "../../hooks/useFetch";
+import styles from "./index.module.css";
 
 const LevelDetails = () => {
   const { levelNum } = useParams();
@@ -8,19 +9,26 @@ const LevelDetails = () => {
 
   if (!error) {
     return (
-      <>
-        <h1>level {levelNum}</h1>
-        <Link to={`/level/${levelNum}`}>Start</Link>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <h1 className={styles.title}>LEVEL {levelNum}</h1>
+          <Link to={`/level/${levelNum}`} className={styles.start}>
+            Start
+          </Link>
+        </div>
         <Leaderboard data={data} loading={loading} />
-        <Link to={`/`}>Back</Link>
-      </>
+        <Link to={`/`} className={styles.back}>
+          Back
+        </Link>
+      </div>
     );
   }
 
   if (error.status === 404) {
     return (
       <div>
-        <h2>This level doesn&apos;t exist!</h2>
+        <h1>Error</h1>
+        <p>This level doesn&apos;t exist!</p>
         <Link to="/">Back to home page</Link>
       </div>
     );
@@ -28,7 +36,8 @@ const LevelDetails = () => {
 
   return (
     <div>
-      <h2>There was an error fetching level data!</h2>
+      <h1>Error</h1>
+      <p>There was a problem fetching level data!</p>
       <Link to="/">Back to home page</Link>
     </div>
   );
