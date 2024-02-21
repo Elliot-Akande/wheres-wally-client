@@ -1,0 +1,30 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ImageLoader > renders image and removes spinner after image loads 1`] = `
+<div>
+  <img
+    alt="test"
+    src="#"
+    style="opacity: 1; transition: 0.3s;"
+  />
+</div>
+`;
+
+exports[`ImageLoader > renders the spinner when loading 1`] = `
+<div>
+  <div
+    class="_container_44da7b "
+  >
+    <div
+      data-testid="spinner"
+    >
+      Spinner
+    </div>
+  </div>
+  <img
+    alt="test"
+    src="#"
+    style="opacity: 0; transition: 0.3s;"
+  />
+</div>
+`;
