@@ -73,7 +73,7 @@ const Game = () => {
   return (
     <>
       <div className={styles.topContainer}>
-        <h1 className={styles.title}>Level {levelNum}</h1>
+        <h1 className={styles.title}>LEVEL {levelNum}</h1>
         <Checklist
           characters={data.characters}
           correctAnswers={correctAnswers}
