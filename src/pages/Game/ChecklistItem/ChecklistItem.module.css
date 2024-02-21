@@ -12,6 +12,7 @@
 
   background-color: var(--neutral-500);
   border-radius: 8px;
+  transition: 0.3s;
 }
 
 .listItemComplete {
