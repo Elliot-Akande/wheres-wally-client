@@ -33,10 +33,14 @@ function Leaderboard({ data, loading }) {
 }
 
 Leaderboard.propTypes = {
-  levelNum: PropTypes.shape({
-    _id: PropTypes.string,
-    name: PropTypes.string,
-    score: PropTypes.number,
+  data: PropTypes.shape({
+    scores: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string,
+        name: PropTypes.string,
+        score: PropTypes.number,
+      })
+    ),
   }),
   loading: PropTypes.bool,
 };
