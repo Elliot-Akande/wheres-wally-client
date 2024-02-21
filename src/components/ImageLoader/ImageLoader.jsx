@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ScaleLoader } from "react-spinners";
 import styles from "./ImageLoader.module.css";
+import PropTypes from "prop-types";
 
 const ImageLoader = ({
   src,
@@ -38,7 +39,21 @@ const ImageLoader = ({
 };
 
 ImageLoader.defaultProps = {
-  imgRef: null,
+  placeholderClass: "",
+};
+
+ImageLoader.propTypes = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  imgClass: PropTypes.string,
+  imgRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
+  placeholderClass: PropTypes.string,
+  spinnerHeight: PropTypes.number,
+  spinnerWidth: PropTypes.number,
+  spinnerColour: PropTypes.string,
 };
 
 export default ImageLoader;
