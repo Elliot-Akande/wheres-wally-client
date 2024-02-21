@@ -8,8 +8,8 @@
   border-radius: 50px;
   border: 2px solid var(--accent);
   box-shadow: 0 0 3px 3px var(--neutral-900);
-
   background-repeat: no-repeat;
+  transition: opacity 0.15s;
 }
 
 .menu {

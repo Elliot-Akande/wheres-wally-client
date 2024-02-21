@@ -11,8 +11,8 @@ const TaggableImage = ({
   correctAnswers,
   levelComplete,
 }) => {
-  const [clickedCoords, setClickedCoords] = useState(null);
-  const [hoverCoords, setHoverCoords] = useState(null);
+  const [clickedCoords, setClickedCoords] = useState({ x: 0, y: 0 });
+  const [hoverCoords, setHoverCoords] = useState({ x: 0, y: 0 });
   const [magnifierBehaviour, setMagnifierBehaviour] = useState("hidden");
   const [showIncorrectMark, setShowIncorrectMark] = useState(false);
   const imageRef = useRef(null);
@@ -98,6 +98,7 @@ const TaggableImage = ({
         setHoverCoords({ x, y });
       }}
       onMouseEnter={() => setMagnifierBehaviour("hover")}
+      onMouseLeave={() => setMagnifierBehaviour("hidden")}
     >
       <ImageLoader
         src={imageUrl}

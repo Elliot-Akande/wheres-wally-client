@@ -10,8 +10,6 @@ const SelectionBox = ({
   imageDimensions,
   menuDirection,
 }) => {
-  if (magnifierBehaviour === "hidden") return null;
-
   const zoomLevel = 1.5;
   const magnifierHeight = 80;
   const magnifierWidth = 80;
@@ -37,6 +35,7 @@ const SelectionBox = ({
           backgroundPositionY: `${
             -coords.y * zoomLevel + magnifierHeight / 2
           }px`,
+          opacity: magnifierBehaviour === "hidden" ? 0 : 1,
         }}
       >
         {magnifierBehaviour === "clicked" && (
