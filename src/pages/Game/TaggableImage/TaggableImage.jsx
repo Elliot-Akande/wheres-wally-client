@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import SelectionBox from "../SelectionBox/SelectionBox";
 import styles from "./TaggableImage.module.css";
+import ImageLoader from "../../../components/ImageLoader/ImageLoader";
 
 const TaggableImage = ({
   imageUrl,
@@ -98,12 +99,20 @@ const TaggableImage = ({
       onMouseEnter={() => setMagnifierBehaviour("hover")}
       // onMouseLeave={() => setMagnifierBehaviour("hidden")}
     >
-      <img
+      <ImageLoader
+        src={imageUrl}
+        alt="Where's Wally Game"
+        imgClass={styles.image}
+        imgRef={imageRef}
+        spinnerColour="hsl(288, 70%, 49%)"
+        placeholderClass={styles.placeholder}
+      />
+      {/* <img
         src={imageUrl}
         alt="Where's Wally Game"
         className={styles.image}
         ref={imageRef}
-      />
+      /> */}
 
       {/* Correct answer markers */}
       {correctAnswers.map((answer) => (
