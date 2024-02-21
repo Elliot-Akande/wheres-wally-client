@@ -6,10 +6,11 @@ const ImageLoader = ({
   src,
   alt,
   imgClass,
+  imgRef,
   placeholderClass,
-  loaderColour,
   spinnerHeight,
   spinnerWidth,
+  spinnerColour,
 }) => {
   const [loading, setLoading] = useState(true);
 
@@ -18,7 +19,7 @@ const ImageLoader = ({
       {loading ? (
         <div className={`${styles.container} ${placeholderClass}`}>
           <ScaleLoader
-            color={loaderColour}
+            color={spinnerColour}
             height={spinnerHeight}
             width={spinnerWidth}
           />
@@ -27,12 +28,17 @@ const ImageLoader = ({
       <img
         src={src}
         alt={alt}
+        ref={imgRef}
         className={imgClass}
         onLoad={() => setLoading(false)}
         style={{ opacity: loading ? 0 : 1, transition: "0.3s" }}
       />
     </>
   );
+};
+
+ImageLoader.defaultProps = {
+  imgRef: null,
 };
 
 export default ImageLoader;
