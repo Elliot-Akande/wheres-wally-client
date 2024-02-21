@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import SelectionBox from "../SelectionBox/SelectionBox";
 import styles from "./TaggableImage.module.css";
 import ImageLoader from "../../../components/ImageLoader/ImageLoader";
+import IncorrectIcon from "../../../assets/incorrect.svg";
 
 const TaggableImage = ({
   imageUrl,
@@ -97,7 +98,6 @@ const TaggableImage = ({
         setHoverCoords({ x, y });
       }}
       onMouseEnter={() => setMagnifierBehaviour("hover")}
-      // onMouseLeave={() => setMagnifierBehaviour("hidden")}
     >
       <ImageLoader
         src={imageUrl}
@@ -107,12 +107,6 @@ const TaggableImage = ({
         spinnerColour="hsl(288, 70%, 49%)"
         placeholderClass={styles.placeholder}
       />
-      {/* <img
-        src={imageUrl}
-        alt="Where's Wally Game"
-        className={styles.image}
-        ref={imageRef}
-      /> */}
 
       {/* Correct answer markers */}
       {correctAnswers.map((answer) => (
@@ -137,15 +131,15 @@ const TaggableImage = ({
       />
 
       {showIncorrectMark && (
-        <div
+        <img
+          src={IncorrectIcon}
+          alt="Incorrect"
           className={styles.incorrect}
           style={{
             left: clickedCoords.x + "px",
             top: clickedCoords.y + "px",
           }}
-        >
-          X
-        </div>
+        />
       )}
     </div>
   );

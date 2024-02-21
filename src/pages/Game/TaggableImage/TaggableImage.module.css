@@ -49,7 +49,6 @@
 
   background-color: var(--error);
   box-shadow: 0 0 2px 2px var(--error);
-  color: white;
   font-weight: bold;
 
   opacity: 0;
