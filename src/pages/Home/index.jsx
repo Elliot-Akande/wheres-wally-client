@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import styles from "./index.module.css";
+import ImageLoader from "../../components/ImageLoader/ImageLoader";
 
 const Home = () => {
   const { data, loading, error } = useFetch("/levels");
@@ -20,7 +21,13 @@ const Home = () => {
 const LevelCard = ({ levelNum, imageUrl }) => {
   return (
     <Link to={`level/${levelNum}/details`} className={styles.card}>
-      <img src={imageUrl} className={styles.img} />
+      <ImageLoader
+        src={imageUrl}
+        alt={`Level ${levelNum}`}
+        imgClass={styles.img}
+        placeholderClass={styles.placeholder}
+        loaderColour={"hsl(288, 70%, 49%)"}
+      />
       <div className={styles.title}>LEVEL {levelNum}</div>
     </Link>
   );

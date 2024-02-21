@@ -47,6 +47,10 @@
   transform: translate(60%, 60%) rotate(-45deg);
 }
 
+.placeholder {
+  background-color: var(--neutral-700);
+}
+
 .img {
   min-width: 100%;
   height: 100%;
