@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
-import Home from "../index.jsx";
 import useFetch from "../../../hooks/useFetch.jsx";
+import Home from "../index.jsx";
 
 const mocks = vi.hoisted(() => ({
   useFetch: vi.fn(),
