@@ -12,15 +12,20 @@ vi.mock("../../../hooks/useFetch.jsx", () => ({
   default: mocks.useFetch,
 }));
 
+vi.mock("../../../components/ImageLoader/ImageLoader.jsx", () => ({
+  default: ({ src }) => {
+    return <img src={src} />;
+  },
+}));
+
 const data = [
   {
     levelNum: 1,
+    imageUrl: "/level1",
   },
   {
     levelNum: 2,
-  },
-  {
-    levelNum: 3,
+    imageUrl: "/level2",
   },
 ];
 const loading = false;

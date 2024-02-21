@@ -2,31 +2,45 @@
 
 exports[`Home > renders Level links 1`] = `
 <div>
-  <a
-    href="/level/1/details"
+  <div
+    class="_container_1f84b2"
   >
-    Level 
-    1
-  </a>
-  <a
-    href="/level/2/details"
-  >
-    Level 
-    2
-  </a>
-  <a
-    href="/level/3/details"
-  >
-    Level 
-    3
-  </a>
+    <a
+      class="_card_1f84b2"
+      href="/level/1/details"
+    >
+      <img
+        src="/level1"
+      />
+      <div
+        class="_title_1f84b2"
+      >
+        LEVEL 
+        1
+      </div>
+    </a>
+    <a
+      class="_card_1f84b2"
+      href="/level/2/details"
+    >
+      <img
+        src="/level2"
+      />
+      <div
+        class="_title_1f84b2"
+      >
+        LEVEL 
+        2
+      </div>
+    </a>
+  </div>
 </div>
 `;
 
 exports[`Home > renders error message on useFetch error 1`] = `
 <div>
   <p>
-    Data fetching error.
+    Error fetching level data.
   </p>
 </div>
 `;
