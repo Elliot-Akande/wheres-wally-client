@@ -26,7 +26,7 @@ const LevelCard = ({ levelNum, imageUrl }) => {
         alt={`Level ${levelNum}`}
         imgClass={styles.img}
         placeholderClass={styles.placeholder}
-        loaderColour={"hsl(288, 70%, 49%)"}
+        spinnerColour={"hsl(288, 70%, 49%)"}
       />
       <div className={styles.title}>LEVEL {levelNum}</div>
     </Link>

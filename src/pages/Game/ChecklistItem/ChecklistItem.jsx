@@ -8,7 +8,7 @@ const ChecklistItem = ({ character, found }) => {
         src={character.imageUrl}
         alt={character.name}
         imgClass={styles.image}
-        loaderColour={"hsl(288, 70%, 49%)"}
+        spinnerColour={"hsl(288, 70%, 49%)"}
         spinnerWidth={3}
         spinnerHeight={26}
       />
