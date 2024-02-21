@@ -118,10 +118,10 @@ const TaggableImage = ({
       {correctAnswers.map((answer) => (
         <div
           key={answer.character}
-          className={styles.marker}
+          className={styles.correct}
           style={getPostitionStyles(answer)}
         >
-          <img src={answer.imageUrl} className={styles.markerImg} />
+          <img src={answer.imageUrl} className={styles.correctImg} />
         </div>
       ))}
 
