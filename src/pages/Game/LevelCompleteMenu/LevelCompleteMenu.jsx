@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Leaderboard from "../../../components/Leaderboard/Leaderboard";
@@ -42,6 +43,7 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
   };
 
   const getMenuBody = () => {
+    // Score not submitted yet
     if (updatedData === null) {
       return (
         <>
@@ -73,6 +75,7 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
       );
     }
 
+    // Error submitting score
     if (updatedData instanceof Error) {
       return (
         <>
@@ -88,6 +91,7 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
       );
     }
 
+    // Score submitted
     return (
       <>
         <Leaderboard data={updatedData} loading={loading} />
@@ -106,6 +110,12 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
       </div>
     </div>
   );
+};
+
+LevelCompleteMenu.propTypes = {
+  levelNum: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
+  token: PropTypes.string.isRequired,
 };
 
 export default LevelCompleteMenu;
