@@ -1,0 +1,130 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LevelCompleteMenu > renders message on initial data fetching error 1`] = `
+<div>
+  <div
+    class="_container_a7af52"
+  >
+    <div
+      class="_menu_a7af52"
+    >
+      <h2>
+        Level complete!
+      </h2>
+      <p>
+        There was an error contacting the server.
+      </p>
+      <button
+        type="button"
+      >
+        Home
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LevelCompleteMenu > renders message on updated data fetching error 1`] = `
+<div>
+  <div
+    class="_container_a7af52"
+  >
+    <div
+      class="_menu_a7af52"
+    >
+      <h1
+        class="_heading_a7af52"
+      >
+        LEVEL COMPLETE!
+      </h1>
+      <p>
+        There was an error contacting the server.
+      </p>
+      <button
+        class="_button_a7af52"
+        type="button"
+      >
+        Home
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LevelCompleteMenu > renders title, leaderboard, and finish button on score submission 1`] = `
+<div>
+  <div
+    class="_container_a7af52"
+  >
+    <div
+      class="_menu_a7af52"
+    >
+      <h1
+        class="_heading_a7af52"
+      >
+        LEVEL COMPLETE!
+      </h1>
+      <div>
+        Leaderboard
+      </div>
+      <button
+        class="_button_a7af52"
+      >
+        Finish
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LevelCompleteMenu > renders title, score, leaderboard, name form, and submit button 1`] = `
+<div>
+  <div
+    class="_container_a7af52"
+  >
+    <div
+      class="_menu_a7af52"
+    >
+      <h1
+        class="_heading_a7af52"
+      >
+        LEVEL COMPLETE!
+      </h1>
+      <p
+        class="_score_a7af52"
+      >
+        Your Score - 
+        <b>
+          01:40
+        </b>
+      </p>
+      <div>
+        Leaderboard
+      </div>
+      <form
+        class="_form_a7af52"
+      >
+        <label
+          class="_label_a7af52"
+          for="name"
+        >
+          Name
+        </label>
+        <input
+          class="_input_a7af52"
+          id="name"
+          maxlength="32"
+          type="text"
+          value="Anon"
+        />
+        <button
+          class="_button_a7af52"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;
