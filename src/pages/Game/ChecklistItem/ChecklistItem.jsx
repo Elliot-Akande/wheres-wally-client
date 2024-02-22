@@ -20,8 +20,8 @@ const ChecklistItem = ({ character, found }) => {
 
 ChecklistItem.propTypes = {
   character: PropTypes.shape({
-    name: PropTypes.string,
-    imageUrl: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
   }).isRequired,
   found: PropTypes.bool.isRequired,
 };
