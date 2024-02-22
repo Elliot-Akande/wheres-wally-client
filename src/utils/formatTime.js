@@ -1,3 +1,4 @@
+// Converts seconds value to formatted time string.
 function formatTime(time) {
   const mins = Math.floor(time / 60)
     .toString()
