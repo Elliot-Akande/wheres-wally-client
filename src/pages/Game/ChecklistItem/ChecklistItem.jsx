@@ -1,5 +1,6 @@
-import styles from "./ChecklistItem.module.css";
+import PropTypes from "prop-types";
 import ImageLoader from "../../../components/ImageLoader/ImageLoader";
+import styles from "./ChecklistItem.module.css";
 
 const ChecklistItem = ({ character, found }) => {
   return (
@@ -15,6 +16,14 @@ const ChecklistItem = ({ character, found }) => {
       {character.name}
     </li>
   );
+};
+
+ChecklistItem.propTypes = {
+  character: PropTypes.shape({
+    name: PropTypes.string,
+    imageUrl: PropTypes.string,
+  }).isRequired,
+  found: PropTypes.bool.isRequired,
 };
 
 export default ChecklistItem;
