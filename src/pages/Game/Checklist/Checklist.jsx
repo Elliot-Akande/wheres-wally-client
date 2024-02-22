@@ -21,12 +21,12 @@ const Checklist = ({ characters, correctAnswers }) => {
 };
 
 Checklist.propTypes = {
-  character: PropTypes.arrayOf([
+  characters: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string,
-      imageUrl: PropTypes.string,
-    }),
-  ]),
+      name: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string.isRequired,
+    })
+  ),
   correctAnswers: PropTypes.arrayOf(
     PropTypes.shape({
       character: PropTypes.string,
