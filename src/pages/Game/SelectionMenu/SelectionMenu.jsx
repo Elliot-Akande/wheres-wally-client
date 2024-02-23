@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./SelectionMenu.module.css";
 
 const SelectionMenu = ({ characters, checkAnswer, menuDirection }) => {
@@ -24,6 +25,17 @@ const SelectionMenu = ({ characters, checkAnswer, menuDirection }) => {
       ))}
     </ul>
   );
+};
+
+SelectionMenu.propTypes = {
+  characters: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  checkAnswer: PropTypes.func.isRequired,
+  menuDirection: PropTypes.string.isRequired,
 };
 
 export default SelectionMenu;
