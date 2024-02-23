@@ -1,4 +1,4 @@
-import styles from "./SelectionBox.module.css";
+import styles from "./Maginifier.module.css";
 
 const SelectionBox = ({
   clickedCoords,
@@ -8,12 +8,21 @@ const SelectionBox = ({
   checkAnswer,
   imageUrl,
   imageDimensions,
-  menuDirection,
 }) => {
   const zoomLevel = 1.5;
   const magnifierHeight = 80;
   const magnifierWidth = 80;
+
   const coords = magnifierBehaviour === "clicked" ? clickedCoords : hoverCoords;
+  const opacity = magnifierBehaviour === "hidden" ? 0 : 1;
+  const menuDirection = (() => {
+    if (magnifierBehaviour !== "clicked") return;
+
+    if (clickedCoords.x < imageDimensions.width / 2) {
+      return "left";
+    }
+    return "right";
+  })();
 
   return (
     <>
@@ -35,7 +44,7 @@ const SelectionBox = ({
           backgroundPositionY: `${
             -coords.y * zoomLevel + magnifierHeight / 2
           }px`,
-          opacity: magnifierBehaviour === "hidden" ? 0 : 1,
+          opacity,
         }}
       >
         {magnifierBehaviour === "clicked" && (
