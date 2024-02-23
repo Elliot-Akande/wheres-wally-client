@@ -1,0 +1,36 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SelectionMenu > renders menu items correctly 1`] = `
+<div>
+  <ul
+    class="_menu_9022aa _menuLeft_9022aa"
+  >
+    <li>
+      <button
+        class="_item_9022aa"
+      >
+        <img
+          alt="Alice"
+          aria-hidden="true"
+          class="_img_9022aa"
+          src="alice.jpg"
+        />
+        Alice
+      </button>
+    </li>
+    <li>
+      <button
+        class="_item_9022aa"
+      >
+        <img
+          alt="Bob"
+          aria-hidden="true"
+          class="_img_9022aa"
+          src="bob.jpg"
+        />
+        Bob
+      </button>
+    </li>
+  </ul>
+</div>
+`;
