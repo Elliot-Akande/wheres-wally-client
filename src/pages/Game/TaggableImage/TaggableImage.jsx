@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import SelectionBox from "../SelectionBox/SelectionBox";
+import Magnifier from "../Magnifier/Maginifier";
 import styles from "./TaggableImage.module.css";
 import ImageLoader from "../../../components/ImageLoader/ImageLoader";
 import IncorrectIcon from "../../../assets/incorrect.svg";
@@ -20,49 +20,54 @@ const TaggableImage = ({
   const handleClick = (e) => {
     if (levelComplete) return;
 
+    // Hide character selection menu
     if (magnifierBehaviour === "clicked") {
       setMagnifierBehaviour("hover");
       return;
     }
 
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = Math.round(e.clientX - rect.left);
-    const y = Math.round(e.clientY - rect.top);
+    const { top, left } = e.currentTarget.getBoundingClientRect();
+    const x = Math.round(e.clientX - left);
+    const y = Math.round(e.clientY - top);
 
-    setClickedCoords({ x, y });
     setShowIncorrectMark(false);
+    setClickedCoords({ x, y });
     setMagnifierBehaviour("clicked");
   };
 
-  const handleCorrectAnswer = () => {
-    setMagnifierBehaviour("hover");
+  const handleMouseMove = (e) => {
+    const { top, left } = e.currentTarget.getBoundingClientRect();
+    const x = Math.round(e.clientX - left);
+    const y = Math.round(e.clientY - top);
+    setHoverCoords({ x, y });
   };
 
-  const handleWrongAnswer = () => {
-    setShowIncorrectMark(true);
-    setMagnifierBehaviour("hover");
-    setTimeout(() => {
-      setShowIncorrectMark(false);
-    }, 1000);
-  };
-
+  // Call checkAnswer prop with additional side effects
   const customCheckAnswer = async (character) => {
     setMagnifierBehaviour("hover");
 
+    // Create answer object
     const img = imageRef.current;
     const normalisedX = clickedCoords.x / img.width;
     const normalisedY = clickedCoords.y / img.height;
-
     const answer = {
+      // Denormalised coords
       xCoord: Math.round(img.naturalWidth * normalisedX),
       yCoord: Math.round(img.naturalHeight * normalisedY),
       character,
     };
 
-    (await checkAnswer(answer)) ? handleCorrectAnswer() : handleWrongAnswer();
+    if (!(await checkAnswer(answer))) {
+      // Answer is incorrect
+      setShowIncorrectMark(true);
+      setTimeout(() => {
+        setShowIncorrectMark(false);
+      }, 1000);
+    }
   };
 
-  const getPostitionStyles = (data) => {
+  const getAnswerMarkerPositionStyles = (data) => {
+    // Normalise coords to current img dimensions
     const img = imageRef.current;
     const xCoord = data.xCoord * (img.width / img.naturalWidth);
     const yCoord = data.yCoord * (img.height / img.naturalHeight);
@@ -80,23 +85,11 @@ const TaggableImage = ({
     return { width, height };
   };
 
-  const menuDirection = (() => {
-    if (clickedCoords && clickedCoords.x < getImgDimensions().width / 2) {
-      return "left";
-    }
-    return "right";
-  })();
-
   return (
     <div
       className={styles.imageContainer}
       onClick={handleClick}
-      onMouseMove={(e) => {
-        const { top, left } = e.currentTarget.getBoundingClientRect();
-        const x = Math.round(e.pageX - left - scrollX);
-        const y = Math.round(e.pageY - top - scrollY);
-        setHoverCoords({ x, y });
-      }}
+      onMouseMove={handleMouseMove}
       onMouseEnter={() => setMagnifierBehaviour("hover")}
       onMouseLeave={() => setMagnifierBehaviour("hidden")}
     >
@@ -114,13 +107,13 @@ const TaggableImage = ({
         <div
           key={answer.character}
           className={styles.correct}
-          style={getPostitionStyles(answer)}
+          style={getAnswerMarkerPositionStyles(answer)}
         >
           <img src={answer.imageUrl} className={styles.correctImg} />
         </div>
       ))}
 
-      <SelectionBox
+      <Magnifier
         clickedCoords={clickedCoords}
         hoverCoords={hoverCoords}
         magnifierBehaviour={magnifierBehaviour}
@@ -128,7 +121,6 @@ const TaggableImage = ({
         checkAnswer={customCheckAnswer}
         imageDimensions={getImgDimensions()}
         imageUrl={imageUrl}
-        menuDirection={menuDirection}
       />
 
       {showIncorrectMark && (
