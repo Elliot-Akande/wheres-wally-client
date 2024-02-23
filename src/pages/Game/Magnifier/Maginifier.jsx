@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import SelectionMenu from "../SelectionMenu/SelectionMenu";
 import styles from "./Maginifier.module.css";
 
@@ -52,6 +53,30 @@ const Magnifier = ({
       </div>
     </>
   );
+};
+
+Magnifier.propTypes = {
+  clickedCoords: PropTypes.shape({
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
+  }).isRequired,
+  hoverCoords: PropTypes.shape({
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
+  }).isRequired,
+  magnifierBehaviour: PropTypes.string.isRequired,
+  characters: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  checkAnswer: PropTypes.func.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  imageDimensions: PropTypes.shape({
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default Magnifier;
