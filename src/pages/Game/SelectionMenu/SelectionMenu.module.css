@@ -16,7 +16,6 @@
     var(--neutral-900)
   );
   border-radius: 8px;
-
   transform: translate(-10px, -50%);
   overflow: hidden;
   pointer-events: auto;
@@ -29,6 +28,7 @@
 }
 
 .item {
+  width: 100%;
   padding: 8px;
 
   display: flex;
@@ -37,6 +37,8 @@
 
   cursor: pointer;
   color: var(--neutral-100);
+  background: none;
+  border: none;
 }
 
 .item:hover {

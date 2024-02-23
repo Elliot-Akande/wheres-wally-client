@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 import styles from "./SelectionMenu.module.css";
 
 const SelectionMenu = ({ characters, checkAnswer, menuDirection }) => {
-  const handleClick = (e) => {
+  const handleClick = (e, name) => {
     e.stopPropagation();
-    checkAnswer(e.currentTarget.innerText);
+    checkAnswer(name);
   };
 
   return (
@@ -14,13 +14,19 @@ const SelectionMenu = ({ characters, checkAnswer, menuDirection }) => {
       }`}
     >
       {characters.map((character) => (
-        <li onClick={handleClick} key={character.name} className={styles.item}>
-          <img
-            src={character.imageUrl}
-            alt={character.name}
-            className={styles.img}
-          />
-          {character.name}
+        <li key={character.name}>
+          <button
+            className={styles.item}
+            onClick={(e) => handleClick(e, character.name)}
+          >
+            <img
+              src={character.imageUrl}
+              alt={character.name}
+              className={styles.img}
+              aria-hidden="true"
+            />
+            {character.name}
+          </button>
         </li>
       ))}
     </ul>
