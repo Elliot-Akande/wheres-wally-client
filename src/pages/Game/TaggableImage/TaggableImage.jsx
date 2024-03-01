@@ -3,6 +3,7 @@ import Magnifier from "../Magnifier/Maginifier";
 import styles from "./TaggableImage.module.css";
 import ImageLoader from "../../../components/ImageLoader/ImageLoader";
 import IncorrectIcon from "../../../assets/incorrect.svg";
+import PropTypes from "prop-types";
 
 const TaggableImage = ({
   imageUrl,
@@ -136,6 +137,26 @@ const TaggableImage = ({
       )}
     </div>
   );
+};
+
+TaggableImage.propTypes = {
+  imageUrl: PropTypes.string.isRequired,
+  characters: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  checkAnswer: PropTypes.func.isRequired,
+  correctAnswers: PropTypes.arrayOf(
+    PropTypes.shape({
+      character: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string.isRequired,
+      xCoord: PropTypes.number.isRequired,
+      yCoord: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  levelComplete: PropTypes.bool.isRequired,
 };
 
 export default TaggableImage;
