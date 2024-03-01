@@ -21,7 +21,7 @@ vi.mock("../../../components/Leaderboard/Leaderboard.jsx", () => ({
   default: () => <div>Leaderboard</div>,
 }));
 
-const levelNum = 1;
+const levelNum = "1";
 const score = 100;
 const token = "token";
 const data = [
