@@ -3,8 +3,8 @@ import { describe, expect, it, vi } from "vitest";
 import Checklist from "../Checklist/Checklist.jsx";
 
 vi.mock("../ChecklistItem/ChecklistItem.jsx", () => ({
-  default: ({ key, character, found }) => (
-    <li key={key}>
+  default: ({ character, found }) => (
+    <li>
       {character.name} is {found ? "Found" : "Not Found"}
     </li>
   ),
