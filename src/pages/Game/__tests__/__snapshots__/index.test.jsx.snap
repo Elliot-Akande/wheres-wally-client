@@ -8,12 +8,21 @@ exports[`Game > renders error message level data error 1`] = `
 </div>
 `;
 
-exports[`Game > renders heading, TaggableImage, Checklist, and quit Link 1`] = `
+exports[`Game > renders heading, Checklist, and TaggableImage 1`] = `
 <div>
-  <h1>
-    Level 
-    3
-  </h1>
+  <div
+    class="_topContainer_8e2f1b"
+  >
+    <h1
+      class="_title_8e2f1b"
+    >
+      LEVEL 
+      3
+    </h1>
+    <div>
+      Checklist Component
+    </div>
+  </div>
   <div>
     TaggableImage Component
     <button>
@@ -23,14 +32,6 @@ exports[`Game > renders heading, TaggableImage, Checklist, and quit Link 1`] = `
       Odlaw
     </button>
   </div>
-  <div>
-    Checklist Component
-  </div>
-  <a
-    href="/"
-  >
-    Quit level
-  </a>
 </div>
 `;
 

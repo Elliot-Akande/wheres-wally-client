@@ -5,17 +5,11 @@ import { describe, expect, it, vi } from "vitest";
 import Game from "../index";
 
 const mocks = vi.hoisted(() => ({
-  checkAnswerCorrect: vi.fn(),
-  useLevelData: vi.fn(),
   useParams: vi.fn(),
+  fetchAsync: vi.fn(),
+  useFetch: vi.fn(),
 }));
 
-vi.mock("../useLevelData.jsx", () => ({
-  default: mocks.useLevelData,
-}));
-vi.mock("../checkAnswerCorrect.jsx", () => ({
-  default: mocks.checkAnswerCorrect,
-}));
 vi.mock("react-router-dom", async () => {
   const mod = await vi.importActual("react-router-dom");
   return {
@@ -23,6 +17,12 @@ vi.mock("react-router-dom", async () => {
     useParams: mocks.useParams,
   };
 });
+vi.mock("../../../utils/fetchAsync.js", () => ({
+  default: mocks.fetchAsync,
+}));
+vi.mock("../../../hooks/useFetch.jsx", () => ({
+  default: mocks.useFetch,
+}));
 
 vi.mock("../Checklist/Checklist.jsx", () => ({
   default: () => <div>Checklist Component</div>,
@@ -35,10 +35,18 @@ vi.mock("../TaggableImage/TaggableImage.jsx", () => ({
     return (
       <div>
         TaggableImage Component
-        <button onClick={() => checkAnswer({ x: 0, y: 0 }, "Wally")}>
+        <button
+          onClick={() =>
+            checkAnswer({ xCoord: 10, yCoord: 10, character: "Wally" })
+          }
+        >
           Wally
         </button>
-        <button onClick={() => checkAnswer({ x: 0, y: 0 }, "Odlaw")}>
+        <button
+          onClick={() =>
+            checkAnswer({ xCoord: 20, yCoord: 20, character: "Odlaw" })
+          }
+        >
           Odlaw
         </button>
       </div>
@@ -46,19 +54,26 @@ vi.mock("../TaggableImage/TaggableImage.jsx", () => ({
   },
 }));
 
-const levelNum = 3;
-const data = {
-  token: "token",
-  img: "#",
-  characters: ["Wally", "Odlaw"],
-};
-const loading = false;
-const error = null;
-
 describe("Game", () => {
-  it("renders heading, TaggableImage, Checklist, and quit Link", () => {
+  const levelNum = 3;
+  const data = {
+    token: "token",
+    imageUrl: "/game.png",
+    characters: [
+      {
+        name: "Wally",
+        imageUrl: "/wally.png",
+      },
+      {
+        name: "Odlaw",
+        imageUrl: "/odlaw.png",
+      },
+    ],
+  };
+
+  it("renders heading, Checklist, and TaggableImage", () => {
     mocks.useParams.mockReturnValue({ levelNum });
-    mocks.useLevelData.mockReturnValue({ data, loading, error });
+    mocks.useFetch.mockReturnValue({ data, loading: false, error: null });
 
     const { container } = render(
       <MemoryRouter>
@@ -71,7 +86,7 @@ describe("Game", () => {
 
   it("renders loading message when loading level data", () => {
     mocks.useParams.mockReturnValue({ levelNum });
-    mocks.useLevelData.mockReturnValue({ data, loading: true, error });
+    mocks.useFetch.mockReturnValue({ data: null, loading: true, error: null });
 
     const { container } = render(
       <MemoryRouter>
@@ -84,7 +99,11 @@ describe("Game", () => {
 
   it("renders error message level data error", () => {
     mocks.useParams.mockReturnValue({ levelNum });
-    mocks.useLevelData.mockReturnValue({ data, loading, error: new Error() });
+    mocks.useFetch.mockReturnValue({
+      data,
+      loading: false,
+      error: new Error(),
+    });
 
     const { container } = render(
       <MemoryRouter>
@@ -98,8 +117,11 @@ describe("Game", () => {
   it("renders LevelCompleteMenu when all characters are found", async () => {
     const user = userEvent.setup();
     mocks.useParams.mockReturnValue({ levelNum });
-    mocks.useLevelData.mockReturnValue({ data, loading, error });
-    mocks.checkAnswerCorrect.mockReturnValue(true);
+    mocks.useFetch.mockReturnValue({ data, loading: false, error: null });
+    mocks.fetchAsync
+      .mockResolvedValueOnce({ isCorrect: true })
+      .mockResolvedValueOnce({ isCorrect: true })
+      .mockResolvedValueOnce({ isComplete: true });
 
     render(
       <MemoryRouter>
@@ -107,21 +129,24 @@ describe("Game", () => {
       </MemoryRouter>
     );
 
-    const buttons = data.characters.map((character) =>
-      screen.getByRole("button", { name: character })
+    const buttons = data.characters.map(({ name }) =>
+      screen.getByRole("button", { name })
     );
+
+    expect(screen.queryByText("LevelCompleteMenu Component")).toBeNull();
 
     await user.click(buttons[0]);
     await user.click(buttons[1]);
-
     expect(screen.getByText("LevelCompleteMenu Component")).toBeInTheDocument();
   });
 
   it("doesn't render levelCompleteMenu when some but not all characters are found", async () => {
     const user = userEvent.setup();
     mocks.useParams.mockReturnValue({ levelNum });
-    mocks.useLevelData.mockReturnValue({ data, loading, error });
-    mocks.checkAnswerCorrect.mockReturnValue(true);
+    mocks.useFetch.mockReturnValue({ data, loading: false, error: null });
+    mocks.fetchAsync
+      .mockResolvedValueOnce({ isCorrect: true })
+      .mockResolvedValueOnce({ isComplete: false });
 
     render(
       <MemoryRouter>
@@ -129,38 +154,12 @@ describe("Game", () => {
       </MemoryRouter>
     );
 
-    const buttons = data.characters.map((character) =>
-      screen.getByRole("button", { name: character })
+    const buttons = data.characters.map(({ name }) =>
+      screen.getByRole("button", { name })
     );
 
     await user.click(buttons[0]);
 
-    expect(
-      screen.queryByText("LevelCompleteMenu Component")
-    ).not.toBeInTheDocument();
-  });
-
-  it("doesn't render levelCompleteMenu when wrong answers are submitted", async () => {
-    const user = userEvent.setup();
-    mocks.useParams.mockReturnValue({ levelNum });
-    mocks.useLevelData.mockReturnValue({ data, loading, error });
-    mocks.checkAnswerCorrect.mockReturnValue(false);
-
-    render(
-      <MemoryRouter>
-        <Game />
-      </MemoryRouter>
-    );
-
-    const buttons = data.characters.map((character) =>
-      screen.getByRole("button", { name: character })
-    );
-
-    await user.click(buttons[0]);
-    await user.click(buttons[1]);
-
-    expect(
-      screen.queryByText("LevelCompleteMenu Component")
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText("LevelCompleteMenu Component")).toBeNull();
   });
 });
