@@ -1,14 +1,14 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { ScaleLoader } from "react-spinners";
-import styles from "./ImageLoader.module.css";
-import PropTypes from "prop-types";
+import { Image, Placeholder } from "./styles";
 
 const ImageLoader = ({
   src,
   alt,
-  imgClass,
   imgRef,
-  placeholderClass,
+  imgStyles,
+  placeholderStyles,
   spinnerHeight,
   spinnerWidth,
   spinnerColour,
@@ -18,39 +18,35 @@ const ImageLoader = ({
   return (
     <>
       {loading ? (
-        <div className={`${styles.container} ${placeholderClass}`}>
+        <Placeholder $customStyles={placeholderStyles}>
           <ScaleLoader
             color={spinnerColour}
             height={spinnerHeight}
             width={spinnerWidth}
           />
-        </div>
+        </Placeholder>
       ) : null}
-      <img
+      <Image
         src={src}
         alt={alt}
         ref={imgRef}
-        className={imgClass}
         onLoad={() => setLoading(false)}
-        style={{ opacity: loading ? 0 : 1, transition: "0.3s" }}
+        $customStyles={imgStyles}
+        $loading={loading}
       />
     </>
   );
 };
 
-ImageLoader.defaultProps = {
-  placeholderClass: "",
-};
-
 ImageLoader.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
-  imgClass: PropTypes.string,
   imgRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   ]),
-  placeholderClass: PropTypes.string,
+  imgStyles: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  placeholderStyles: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   spinnerHeight: PropTypes.number,
   spinnerWidth: PropTypes.number,
   spinnerColour: PropTypes.string,

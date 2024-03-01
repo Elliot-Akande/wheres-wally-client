@@ -11,10 +11,10 @@ exports[`Game > renders error message level data error 1`] = `
 exports[`Game > renders heading, Checklist, and TaggableImage 1`] = `
 <div>
   <div
-    class="_topContainer_8e2f1b"
+    class="sc-beySPh gLCnrv"
   >
     <h1
-      class="_title_8e2f1b"
+      class="sc-guDLey cxjOww"
     >
       LEVEL 
       3

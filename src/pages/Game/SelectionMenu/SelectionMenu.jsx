@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import styles from "./SelectionMenu.module.css";
+import { Button, Image, StyledSelectionMenu } from "./styles";
 
 const SelectionMenu = ({ characters, checkAnswer, menuDirection }) => {
   const handleClick = (e, name) => {
@@ -8,28 +8,16 @@ const SelectionMenu = ({ characters, checkAnswer, menuDirection }) => {
   };
 
   return (
-    <ul
-      className={`${styles.menu} ${
-        menuDirection === "left" ? styles.menuLeft : ""
-      }`}
-    >
+    <StyledSelectionMenu $isLeft={menuDirection === "left"}>
       {characters.map((character) => (
         <li key={character.name}>
-          <button
-            className={styles.item}
-            onClick={(e) => handleClick(e, character.name)}
-          >
-            <img
-              src={character.imageUrl}
-              alt={character.name}
-              className={styles.img}
-              aria-hidden="true"
-            />
+          <Button onClick={(e) => handleClick(e, character.name)}>
+            <Image src={character.imageUrl} alt="" />
             {character.name}
-          </button>
+          </Button>
         </li>
       ))}
-    </ul>
+    </StyledSelectionMenu>
   );
 };
 

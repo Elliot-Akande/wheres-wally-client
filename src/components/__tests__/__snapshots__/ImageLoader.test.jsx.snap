@@ -4,8 +4,8 @@ exports[`ImageLoader > renders image and removes spinner after image loads 1`] =
 <div>
   <img
     alt="test"
+    class="sc-guDLey cIQHQZ"
     src="#"
-    style="opacity: 1; transition: 0.3s;"
   />
 </div>
 `;
@@ -13,7 +13,7 @@ exports[`ImageLoader > renders image and removes spinner after image loads 1`] =
 exports[`ImageLoader > renders the spinner when loading 1`] = `
 <div>
   <div
-    class="_container_44da7b "
+    class="sc-beySPh jAEnzm"
   >
     <div
       data-testid="spinner"
@@ -23,8 +23,8 @@ exports[`ImageLoader > renders the spinner when loading 1`] = `
   </div>
   <img
     alt="test"
+    class="sc-guDLey hebdIY"
     src="#"
-    style="opacity: 0; transition: 0.3s;"
   />
 </div>
 `;

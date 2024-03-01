@@ -3,7 +3,7 @@
 exports[`Magnifier > displays the SelectionMenu when magnifierBehaviour is "clicked" 1`] = `
 <div>
   <div
-    class="_magnifier_1a8fe6"
+    class="sc-beySPh eaciJa"
     style="height: 80px; width: 80px; top: 10px; left: 10px; background-image: url(test.jpg); background-size: 300px 300px; background-position-x: -35px; background-position-y: -35px; opacity: 1;"
   >
     <div>
@@ -16,7 +16,7 @@ exports[`Magnifier > displays the SelectionMenu when magnifierBehaviour is "clic
 exports[`Magnifier > does not display the SelectionMenu when magnifierBehaviour is not "clicked" 1`] = `
 <div>
   <div
-    class="_magnifier_1a8fe6"
+    class="sc-beySPh eaciJa"
     style="height: 80px; width: 80px; top: 60px; left: 60px; background-image: url(test.jpg); background-size: 300px 300px; background-position-x: -110px; background-position-y: -110px; opacity: 1;"
   />
 </div>

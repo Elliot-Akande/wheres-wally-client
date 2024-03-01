@@ -1,9 +1,21 @@
-import { useState, useRef } from "react";
-import Magnifier from "../Magnifier/Maginifier";
-import styles from "./TaggableImage.module.css";
-import ImageLoader from "../../../components/ImageLoader/ImageLoader";
-import IncorrectIcon from "../../../assets/incorrect.svg";
 import PropTypes from "prop-types";
+import { useRef, useState } from "react";
+import { css } from "styled-components";
+import IncorrectIcon from "../../../assets/incorrect.svg";
+import ImageLoader from "../../../components/ImageLoader/ImageLoader";
+import Magnifier from "../Magnifier/Maginifier";
+import {
+  CorrectContainer,
+  CorrectImg,
+  IncorrectImg,
+  StyledTaggableImage,
+} from "./styles";
+
+const imageStyles = css`
+  width: 100%;
+  object-fit: contain;
+  border-radius: 16px;
+`;
 
 const TaggableImage = ({
   imageUrl,
@@ -87,8 +99,7 @@ const TaggableImage = ({
   };
 
   return (
-    <div
-      className={styles.imageContainer}
+    <StyledTaggableImage
       onClick={handleClick}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setMagnifierBehaviour("hover")}
@@ -97,21 +108,20 @@ const TaggableImage = ({
       <ImageLoader
         src={imageUrl}
         alt="Where's Wally Game"
-        imgClass={styles.image}
         imgRef={imageRef}
+        imgStyles={imageStyles}
         spinnerColour="hsl(288, 70%, 49%)"
-        placeholderClass={styles.placeholder}
+        placeholderStyles={{ paddingTop: "48px" }}
       />
 
       {/* Correct answer markers */}
       {correctAnswers.map((answer) => (
-        <div
+        <CorrectContainer
           key={answer.character}
-          className={styles.correct}
-          style={getAnswerMarkerPositionStyles(answer)}
+          $positionStyles={getAnswerMarkerPositionStyles(answer)}
         >
-          <img src={answer.imageUrl} className={styles.correctImg} />
-        </div>
+          <CorrectImg src={answer.imageUrl} />
+        </CorrectContainer>
       ))}
 
       <Magnifier
@@ -125,17 +135,13 @@ const TaggableImage = ({
       />
 
       {showIncorrectMark && (
-        <img
+        <IncorrectImg
           src={IncorrectIcon}
           alt="Incorrect"
-          className={styles.incorrect}
-          style={{
-            left: clickedCoords.x + "px",
-            top: clickedCoords.y + "px",
-          }}
+          $coords={clickedCoords}
         />
       )}
-    </div>
+    </StyledTaggableImage>
   );
 };
 

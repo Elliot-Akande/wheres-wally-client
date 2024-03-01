@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import SelectionMenu from "../SelectionMenu/SelectionMenu";
-import styles from "./Maginifier.module.css";
+import { StyledMagnifier } from "./styles";
 
 const Magnifier = ({
   clickedCoords,
@@ -11,38 +11,28 @@ const Magnifier = ({
   imageUrl,
   imageDimensions,
 }) => {
-  const zoomLevel = 1.5;
-  const magnifierHeight = 80;
-  const magnifierWidth = 80;
+  const magnifierProps = {
+    $magnifierHeight: 80,
+    $magnifierWidth: 80,
+    $zoomLevel: 1.5,
+    $coords: magnifierBehaviour === "clicked" ? clickedCoords : hoverCoords,
+    $hidden: magnifierBehaviour === "hidden",
+    $imageUrl: imageUrl,
+    $imageDimensions: imageDimensions,
+  };
 
-  const coords = magnifierBehaviour === "clicked" ? clickedCoords : hoverCoords;
   const menuDirection = (() => {
     if (magnifierBehaviour !== "clicked") return;
 
     if (clickedCoords.x < imageDimensions.width / 2) {
-      return "left";
+      return "right";
     }
-    return "right";
+    return "left";
   })();
-
-  const calculatedStyles = {
-    height: `${magnifierHeight}px`,
-    width: `${magnifierWidth}px`,
-    top: `${coords.y - magnifierHeight / 2}px`,
-    left: `${coords.x - magnifierWidth / 2}px`,
-
-    backgroundImage: `url('${imageUrl}')`,
-    backgroundSize: `${imageDimensions.width * zoomLevel}px ${
-      imageDimensions.height * zoomLevel
-    }px`,
-    backgroundPositionX: `${-coords.x * zoomLevel + magnifierWidth / 2}px`,
-    backgroundPositionY: `${-coords.y * zoomLevel + magnifierHeight / 2}px`,
-    opacity: magnifierBehaviour === "hidden" ? 0 : 1,
-  };
 
   return (
     <>
-      <div className={styles.magnifier} style={calculatedStyles}>
+      <StyledMagnifier {...magnifierProps}>
         {magnifierBehaviour === "clicked" && (
           <SelectionMenu
             checkAnswer={checkAnswer}
@@ -50,7 +40,7 @@ const Magnifier = ({
             menuDirection={menuDirection}
           />
         )}
-      </div>
+      </StyledMagnifier>
     </>
   );
 };

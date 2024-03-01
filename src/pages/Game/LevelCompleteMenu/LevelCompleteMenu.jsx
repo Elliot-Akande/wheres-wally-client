@@ -5,7 +5,7 @@ import Leaderboard from "../../../components/Leaderboard/Leaderboard";
 import useFetch from "../../../hooks/useFetch";
 import fetchAsync from "../../../utils/fetchAsync";
 import formatTime from "../../../utils/formatTime";
-import styles from "./LevelCompleteMenu.module.css";
+import { Button, Input, Menu, Score, Wrapper, Heading } from "./styles";
 
 const LevelCompleteMenu = ({ levelNum, score, token }) => {
   const { data, loading, error } = useFetch(`/levels/${levelNum}/leaderboard`);
@@ -15,15 +15,15 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
 
   if (error) {
     return (
-      <div className={styles.container}>
-        <div className={styles.menu}>
+      <Wrapper>
+        <Menu>
           <h2>Level complete!</h2>
           <p>There was an error contacting the server.</p>
-          <button type="button" onClick={() => navigate("/")}>
+          <Button type="button" onClick={() => navigate("/")}>
             Home
-          </button>
-        </div>
-      </div>
+          </Button>
+        </Menu>
+      </Wrapper>
     );
   }
 
@@ -47,29 +47,22 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
     if (updatedData === null) {
       return (
         <>
-          <p className={styles.score}>
+          <Score>
             Your Score - <b>{formatTime(score)}</b>
-          </p>
+          </Score>
           <Leaderboard data={data} loading={loading} />
-          <form className={styles.form}>
-            <label htmlFor="name" className={styles.label}>
-              Name
-            </label>
-            <input
+          <form>
+            <label htmlFor="name">Name</label>
+            <Input
               type="text"
               id="name"
-              className={styles.input}
               maxLength={32}
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            <button
-              type="submit"
-              className={styles.button}
-              onClick={handleSubmit}
-            >
+            <Button type="submit" onClick={handleSubmit}>
               Submit
-            </button>
+            </Button>
           </form>
         </>
       );
@@ -80,13 +73,9 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
       return (
         <>
           <p>There was an error contacting the server.</p>
-          <button
-            type="button"
-            onClick={() => navigate("/")}
-            className={styles.button}
-          >
+          <Button type="button" onClick={() => navigate("/")}>
             Home
-          </button>
+          </Button>
         </>
       );
     }
@@ -95,20 +84,18 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
     return (
       <>
         <Leaderboard data={updatedData} loading={loading} />
-        <button onClick={() => navigate("/")} className={styles.button}>
-          Finish
-        </button>
+        <Button onClick={() => navigate("/")}>Finish</Button>
       </>
     );
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.menu}>
-        <h1 className={styles.heading}>LEVEL COMPLETE!</h1>
+    <Wrapper>
+      <Menu>
+        <Heading>LEVEL COMPLETE!</Heading>
         {getMenuBody()}
-      </div>
-    </div>
+      </Menu>
+    </Wrapper>
   );
 };
 

@@ -3,7 +3,7 @@
 exports[`ChecklistItem > renders correctly when found 1`] = `
 <div>
   <li
-    class="_listItemComplete_2489e0"
+    class="sc-beySPh gNxOao"
   >
     <img
       src="#"
@@ -16,7 +16,7 @@ exports[`ChecklistItem > renders correctly when found 1`] = `
 exports[`ChecklistItem > renders correctly when not found 1`] = `
 <div>
   <li
-    class="_listItem_2489e0"
+    class="sc-beySPh buzIbi"
   >
     <img
       src="#"

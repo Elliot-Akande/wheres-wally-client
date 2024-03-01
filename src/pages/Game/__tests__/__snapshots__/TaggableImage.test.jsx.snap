@@ -3,18 +3,17 @@
 exports[`TaggableImage > renders img, CorrectAnswers, and Magnifier 1`] = `
 <div>
   <div
-    class="_imageContainer_569128"
+    class="sc-beySPh iDmzAO"
   >
     <img
       alt="Where's Wally Game"
       src="/test.jpg"
     />
     <div
-      class="_correct_569128"
-      style="left: 2px; top: 2px;"
+      class="sc-dmyCSP coJYrB"
     >
       <img
-        class="_correctImg_569128"
+        class="sc-hLQSwg dChYok"
         src="/kate.jpg"
       />
     </div>

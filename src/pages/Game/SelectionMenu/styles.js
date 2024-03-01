@@ -1,10 +1,12 @@
-.menu {
+import { styled, css } from "styled-components";
+
+export const StyledSelectionMenu = styled.ul`
   margin: 0;
   padding: 0;
 
   position: absolute;
   top: 50%;
-  right: 100%;
+  left: 100%;
 
   display: flex;
   flex-direction: column;
@@ -16,18 +18,21 @@
     var(--neutral-900)
   );
   border-radius: 8px;
-  transform: translate(-10px, -50%);
+  transform: translate(10px, -50%);
+
   overflow: hidden;
   pointer-events: auto;
-}
 
-.menuLeft {
-  left: 100%;
-  right: auto;
-  transform: translate(10px, -50%);
-}
+  ${({ $isLeft }) =>
+    $isLeft &&
+    css`
+      right: 100%;
+      left: auto;
+      transform: translate(-10px, -50%);
+    `}
+`;
 
-.item {
+export const Button = styled.button`
   width: 100%;
   padding: 8px;
 
@@ -39,20 +44,20 @@
   color: var(--neutral-100);
   background: none;
   border: none;
-}
 
-.item:hover {
-  background-image: linear-gradient(
-    270deg,
-    var(--accent-dark),
-    var(--neutral-700)
-  );
-}
+  &:hover {
+    background-image: linear-gradient(
+      270deg,
+      var(--accent-dark),
+      var(--neutral-700)
+    );
+  }
+`;
 
-.img {
+export const Image = styled.img`
   height: 36px;
   width: 36px;
 
   flex-shrink: 0;
   object-fit: contain;
-}
+`;

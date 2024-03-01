@@ -3,9 +3,9 @@ import { describe, expect, it, vi } from "vitest";
 import Checklist from "../Checklist/Checklist.jsx";
 
 vi.mock("../ChecklistItem/ChecklistItem.jsx", () => ({
-  default: ({ character, found }) => (
+  default: ({ character, checked }) => (
     <li>
-      {character.name} is {found ? "Found" : "Not Found"}
+      {character.name} is {checked ? "Found" : "Not Found"}
     </li>
   ),
 }));
@@ -17,7 +17,7 @@ const characters = [
 const correctAnswers = [{ character: "Hermione" }];
 
 describe("Checklist", () => {
-  it("renders a list of characters with correct found status", () => {
+  it("renders a list of characters with correct checked status", () => {
     const { container } = render(
       <Checklist characters={characters} correctAnswers={correctAnswers} />
     );

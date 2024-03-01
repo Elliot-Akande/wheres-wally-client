@@ -1,4 +1,7 @@
-.container {
+import { Link } from "react-router-dom";
+import { css, styled } from "styled-components";
+
+export const StyledLevelDetails = styled.div`
   margin: 48px 0;
   padding: 32px;
 
@@ -8,20 +11,19 @@
 
   background-color: var(--neutral-700);
   border-radius: 16px;
-}
+`;
 
-.header {
+export const Top = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
+`;
 
-.title {
+export const Heading = styled.h1`
   margin: 0;
-}
+`;
 
-.start,
-.back {
+const buttonStyles = css`
   padding: 8px 16px;
 
   font-weight: bold;
@@ -29,20 +31,23 @@
   border-radius: 30px;
 
   transition: 0.1s;
-}
 
-.start {
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
+
+export const StartButton = styled(Link)`
+  ${buttonStyles}
+
   color: var(--neutral-100);
   background: linear-gradient(180deg, var(--accent), var(--accent-dark));
-}
+`;
 
-.back {
+export const BackButton = styled(Link)`
+  ${buttonStyles}
+
   align-self: center;
   color: var(--neutral-100);
   background-color: var(--neutral-500);
-}
-
-.start:hover,
-.back:hover {
-  transform: scale(1.05);
-}
+`;

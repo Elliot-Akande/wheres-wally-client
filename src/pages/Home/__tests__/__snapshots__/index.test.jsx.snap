@@ -3,35 +3,35 @@
 exports[`Home > renders Level links 1`] = `
 <div>
   <div
-    class="_container_1f84b2"
+    class="sc-dmyCSP kZdrqq"
   >
     <a
-      class="_card_1f84b2"
+      class="sc-beySPh hxwsoU"
       href="/level/1/details"
     >
       <img
         src="/level1"
       />
-      <div
-        class="_title_1f84b2"
+      <h2
+        class="sc-guDLey hPdRwR"
       >
         LEVEL 
         1
-      </div>
+      </h2>
     </a>
     <a
-      class="_card_1f84b2"
+      class="sc-beySPh hxwsoU"
       href="/level/2/details"
     >
       <img
         src="/level2"
       />
-      <div
-        class="_title_1f84b2"
+      <h2
+        class="sc-guDLey hPdRwR"
       >
         LEVEL 
         2
-      </div>
+      </h2>
     </a>
   </div>
 </div>

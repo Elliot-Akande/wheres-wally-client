@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import ChecklistItem from "../ChecklistItem/ChecklistItem";
-import styles from "./Checklist.module.css";
+import { StyledChecklist } from "./styles";
 
 const Checklist = ({ characters, correctAnswers }) => {
   const isFound = (character) => {
@@ -8,15 +8,15 @@ const Checklist = ({ characters, correctAnswers }) => {
   };
 
   return (
-    <ul className={styles.list}>
+    <StyledChecklist>
       {characters.map((character) => (
         <ChecklistItem
           key={character.name}
           character={character}
-          found={!!isFound(character.name)}
+          checked={!!isFound(character.name)}
         />
       ))}
-    </ul>
+    </StyledChecklist>
   );
 };
 

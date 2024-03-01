@@ -3,10 +3,10 @@
 exports[`LevelCompleteMenu > renders message on initial data fetching error 1`] = `
 <div>
   <div
-    class="_container_a7af52"
+    class="sc-beySPh dpCrB"
   >
     <div
-      class="_menu_a7af52"
+      class="sc-guDLey bMMjcS"
     >
       <h2>
         Level complete!
@@ -15,6 +15,7 @@ exports[`LevelCompleteMenu > renders message on initial data fetching error 1`] 
         There was an error contacting the server.
       </p>
       <button
+        class="sc-jTQCzO iVNZlj"
         type="button"
       >
         Home
@@ -27,13 +28,13 @@ exports[`LevelCompleteMenu > renders message on initial data fetching error 1`] 
 exports[`LevelCompleteMenu > renders message on updated data fetching error 1`] = `
 <div>
   <div
-    class="_container_a7af52"
+    class="sc-beySPh dpCrB"
   >
     <div
-      class="_menu_a7af52"
+      class="sc-guDLey bMMjcS"
     >
       <h1
-        class="_heading_a7af52"
+        class="sc-dmyCSP eFSKFA"
       >
         LEVEL COMPLETE!
       </h1>
@@ -41,7 +42,7 @@ exports[`LevelCompleteMenu > renders message on updated data fetching error 1`] 
         There was an error contacting the server.
       </p>
       <button
-        class="_button_a7af52"
+        class="sc-jTQCzO iVNZlj"
         type="button"
       >
         Home
@@ -54,13 +55,13 @@ exports[`LevelCompleteMenu > renders message on updated data fetching error 1`] 
 exports[`LevelCompleteMenu > renders title, leaderboard, and finish button on score submission 1`] = `
 <div>
   <div
-    class="_container_a7af52"
+    class="sc-beySPh dpCrB"
   >
     <div
-      class="_menu_a7af52"
+      class="sc-guDLey bMMjcS"
     >
       <h1
-        class="_heading_a7af52"
+        class="sc-dmyCSP eFSKFA"
       >
         LEVEL COMPLETE!
       </h1>
@@ -68,7 +69,7 @@ exports[`LevelCompleteMenu > renders title, leaderboard, and finish button on sc
         Leaderboard
       </div>
       <button
-        class="_button_a7af52"
+        class="sc-jTQCzO iVNZlj"
       >
         Finish
       </button>
@@ -80,18 +81,18 @@ exports[`LevelCompleteMenu > renders title, leaderboard, and finish button on sc
 exports[`LevelCompleteMenu > renders title, score, leaderboard, name form, and submit button 1`] = `
 <div>
   <div
-    class="_container_a7af52"
+    class="sc-beySPh dpCrB"
   >
     <div
-      class="_menu_a7af52"
+      class="sc-guDLey bMMjcS"
     >
       <h1
-        class="_heading_a7af52"
+        class="sc-dmyCSP eFSKFA"
       >
         LEVEL COMPLETE!
       </h1>
       <p
-        class="_score_a7af52"
+        class="sc-hLQSwg edtDZs"
       >
         Your Score - 
         <b>
@@ -101,24 +102,21 @@ exports[`LevelCompleteMenu > renders title, score, leaderboard, name form, and s
       <div>
         Leaderboard
       </div>
-      <form
-        class="_form_a7af52"
-      >
+      <form>
         <label
-          class="_label_a7af52"
           for="name"
         >
           Name
         </label>
         <input
-          class="_input_a7af52"
+          class="sc-eDLKkx logZVp"
           id="name"
           maxlength="32"
           type="text"
           value="Anon"
         />
         <button
-          class="_button_a7af52"
+          class="sc-jTQCzO iVNZlj"
           type="submit"
         >
           Submit

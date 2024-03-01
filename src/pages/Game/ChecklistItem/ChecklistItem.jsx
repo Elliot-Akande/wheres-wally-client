@@ -1,20 +1,20 @@
 import PropTypes from "prop-types";
 import ImageLoader from "../../../components/ImageLoader/ImageLoader";
-import styles from "./ChecklistItem.module.css";
+import { StyledChecklistItem, imgStyles } from "./styles";
 
-const ChecklistItem = ({ character, found }) => {
+const ChecklistItem = ({ character, checked }) => {
   return (
-    <li className={found ? styles.listItemComplete : styles.listItem}>
+    <StyledChecklistItem $checked={checked}>
       <ImageLoader
         src={character.imageUrl}
         alt={character.name}
-        imgClass={styles.image}
+        imgStyles={imgStyles}
         spinnerColour={"hsl(288, 70%, 49%)"}
         spinnerWidth={3}
         spinnerHeight={26}
       />
       {character.name}
-    </li>
+    </StyledChecklistItem>
   );
 };
 
@@ -23,7 +23,7 @@ ChecklistItem.propTypes = {
     name: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
   }).isRequired,
-  found: PropTypes.bool.isRequired,
+  checked: PropTypes.bool.isRequired,
 };
 
 export default ChecklistItem;

@@ -3,15 +3,15 @@
 exports[`Leaderboard > renders heading and empty scores message when no data after loading 1`] = `
 <div>
   <div
-    class="_container_acb05c"
+    class="sc-guDLey gwwqSR"
   >
     <h2
-      class="_heading_acb05c"
+      class="sc-dmyCSP dRcuXB"
     >
       Leaderboard
     </h2>
     <p
-      class="_status_acb05c"
+      class="sc-beySPh NxqXj"
     >
       No scores recorded.
     </p>
@@ -22,43 +22,43 @@ exports[`Leaderboard > renders heading and empty scores message when no data aft
 exports[`Leaderboard > renders heading and list on valid leaderboard data 1`] = `
 <div>
   <div
-    class="_container_acb05c"
+    class="sc-guDLey gwwqSR"
   >
     <h2
-      class="_heading_acb05c"
+      class="sc-dmyCSP dRcuXB"
     >
       Leaderboard
     </h2>
     <ul
-      class="_list_acb05c"
+      class="sc-hLQSwg bFhvaQ"
     >
       <li
-        class="_item_acb05c"
+        class="sc-eDLKkx bmiIbR"
       >
-        <div
-          class="_name_acb05c"
+        <span
+          class="sc-jTQCzO bXZCUx"
         >
           Anon
-        </div>
-        <div
-          class="_score_acb05c"
+        </span>
+        <span
+          class="sc-gLLuof jXpbup"
         >
           32
-        </div>
+        </span>
       </li>
       <li
-        class="_item_acb05c"
+        class="sc-eDLKkx bmiIbR"
       >
-        <div
-          class="_name_acb05c"
+        <span
+          class="sc-jTQCzO bXZCUx"
         >
           Big Gary
-        </div>
-        <div
-          class="_score_acb05c"
+        </span>
+        <span
+          class="sc-gLLuof jXpbup"
         >
           100
-        </div>
+        </span>
       </li>
     </ul>
   </div>
@@ -68,15 +68,15 @@ exports[`Leaderboard > renders heading and list on valid leaderboard data 1`] = 
 exports[`Leaderboard > renders heading and loading message when loading data 1`] = `
 <div>
   <div
-    class="_container_acb05c"
+    class="sc-guDLey gwwqSR"
   >
     <h2
-      class="_heading_acb05c"
+      class="sc-dmyCSP dRcuXB"
     >
       Leaderboard
     </h2>
     <p
-      class="_status_acb05c"
+      class="sc-beySPh NxqXj"
     >
       Loading...
     </p>

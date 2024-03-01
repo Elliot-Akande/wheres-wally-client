@@ -3,16 +3,15 @@
 exports[`SelectionMenu > renders menu items correctly 1`] = `
 <div>
   <ul
-    class="_menu_9022aa _menuLeft_9022aa"
+    class="sc-beySPh giVHEU"
   >
     <li>
       <button
-        class="_item_9022aa"
+        class="sc-guDLey jGcPSN"
       >
         <img
-          alt="Alice"
-          aria-hidden="true"
-          class="_img_9022aa"
+          alt=""
+          class="sc-dmyCSP ipnxtg"
           src="alice.jpg"
         />
         Alice
@@ -20,12 +19,11 @@ exports[`SelectionMenu > renders menu items correctly 1`] = `
     </li>
     <li>
       <button
-        class="_item_9022aa"
+        class="sc-guDLey jGcPSN"
       >
         <img
-          alt="Bob"
-          aria-hidden="true"
-          class="_img_9022aa"
+          alt=""
+          class="sc-dmyCSP ipnxtg"
           src="bob.jpg"
         />
         Bob

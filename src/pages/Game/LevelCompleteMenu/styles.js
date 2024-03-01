@@ -1,4 +1,23 @@
-.container {
+import { keyframes, styled } from "styled-components";
+
+const menu = keyframes`
+  0% {
+    transform: translateY(-200%) scale(0.4);
+  }
+
+  0%,
+  25% {
+    opacity: 0;
+  }
+`;
+
+const container = keyframes`
+  0% {
+    background-color: transparent;
+  }
+`;
+
+export const Wrapper = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -10,10 +29,10 @@
   justify-content: center;
 
   background: #0000007c;
-  animation: container 0.3s;
-}
+  animation: ${container} 0.3s;
+`;
 
-.menu {
+export const Menu = styled.div`
   max-width: min-content;
   padding: 32px;
 
@@ -23,19 +42,19 @@
 
   background-color: var(--neutral-700);
   border-radius: 16px;
-  animation: menu 0.3s;
-}
+  animation: ${menu} 0.3s;
+`;
 
-.heading,
-.score {
+export const Heading = styled.h1`
   margin: 0;
-}
-
-.heading {
   font-size: 24px;
-}
+`;
 
-.input {
+export const Score = styled.p`
+  margin: 0;
+`;
+
+export const Input = styled.input`
   width: 100%;
   padding: 4px 8px;
   margin-top: 4px;
@@ -45,14 +64,14 @@
   background-color: var(--neutral-500);
   border: 2px solid var(--neutral-400);
   border-radius: 8px;
-}
 
-.input:focus-visible {
-  border-color: var(--accent);
-  outline: none;
-}
+  &:focus-visible {
+    border-color: var(--accent);
+    outline: none;
+  }
+`;
 
-.button {
+export const Button = styled.button`
   width: 100%;
   padding: 8px 16px;
 
@@ -64,25 +83,8 @@
   background: linear-gradient(180deg, var(--accent), var(--accent-dark));
 
   transition: 0.1s;
-}
 
-.button:hover {
-  transform: scale(1.04);
-}
-
-@keyframes menu {
-  0% {
-    transform: translateY(-200%) scale(0.4);
+  &:hover {
+    transform: scale(1.04);
   }
-
-  0%,
-  25% {
-    opacity: 0;
-  }
-}
-
-@keyframes container {
-  0% {
-    background-color: transparent;
-  }
-}
+`;

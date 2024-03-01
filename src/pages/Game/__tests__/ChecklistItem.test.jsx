@@ -14,7 +14,7 @@ const character = {
 describe("ChecklistItem", () => {
   it("renders correctly when found", () => {
     const { container } = render(
-      <ChecklistItem character={character} found={true} />
+      <ChecklistItem character={character} checked={true} />
     );
 
     expect(container).toMatchSnapshot();
@@ -22,7 +22,7 @@ describe("ChecklistItem", () => {
 
   it("renders correctly when not found", () => {
     const { container } = render(
-      <ChecklistItem character={character} found={false} />
+      <ChecklistItem character={character} checked={false} />
     );
 
     expect(container).toMatchSnapshot();

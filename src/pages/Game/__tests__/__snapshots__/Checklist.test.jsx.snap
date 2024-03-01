@@ -1,9 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Checklist > renders a list of characters with correct found status 1`] = `
+exports[`Checklist > renders a list of characters with correct checked status 1`] = `
 <div>
   <ul
-    class="_list_d84e0d"
+    class="sc-beySPh iukuLq"
   >
     <li>
       Harry

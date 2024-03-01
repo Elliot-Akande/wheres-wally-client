@@ -21,19 +21,19 @@ exports[`LevelDetails > displays error message on levelNum that doesn't exist. 1
 exports[`LevelDetails > renders title, start link, leaderboard, and home link. 1`] = `
 <div>
   <div
-    class="_container_11cf97"
+    class="sc-beySPh dBJtdt"
   >
     <div
-      class="_header_11cf97"
+      class="sc-guDLey hoUZmj"
     >
       <h1
-        class="_title_11cf97"
+        class="sc-dmyCSP cepTqO"
       >
         LEVEL 
         3
       </h1>
       <a
-        class="_start_11cf97"
+        class="sc-hLQSwg kCsMut"
         href="/level/3"
       >
         Start
@@ -43,7 +43,7 @@ exports[`LevelDetails > renders title, start link, leaderboard, and home link. 1
       Leaderboard Component
     </div>
     <a
-      class="_back_11cf97"
+      class="sc-eDLKkx fHuTzy"
       href="/"
     >
       Back
