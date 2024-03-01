@@ -33,6 +33,5 @@ describe("Magnifier", () => {
       <Magnifier {...mockProps} magnifierBehaviour="hover" />
     );
     expect(container).toMatchSnapshot();
-    screen.debug();
   });
 });
