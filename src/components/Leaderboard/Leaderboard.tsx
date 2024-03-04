@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import formatTime from "../../utils/formatTime";
 import {
   Heading,
@@ -10,10 +9,25 @@ import {
   StyledLeaderboard,
 } from "./styles";
 
-function Leaderboard({ data, loading }) {
+interface LeaderboardProps {
+  data: {
+    scores: Array<{
+      _id: string;
+      name: string;
+      score: number;
+    }>;
+  } | null;
+  loading: boolean;
+}
+
+function Leaderboard({ data, loading }: LeaderboardProps) {
   const getContent = () => {
     if (loading) {
       return <Status>Loading...</Status>;
+    }
+
+    if (!data) {
+      return <Status>Data not present.</Status>;
     }
 
     if (data.scores.length === 0) {
@@ -39,18 +53,5 @@ function Leaderboard({ data, loading }) {
     </StyledLeaderboard>
   );
 }
-
-Leaderboard.propTypes = {
-  data: PropTypes.shape({
-    scores: PropTypes.arrayOf(
-      PropTypes.shape({
-        _id: PropTypes.string,
-        name: PropTypes.string,
-        score: PropTypes.number,
-      })
-    ),
-  }),
-  loading: PropTypes.bool,
-};
 
 export default Leaderboard;

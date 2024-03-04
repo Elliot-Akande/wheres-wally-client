@@ -108,7 +108,7 @@ const TaggableImage = ({
       <ImageLoader
         src={imageUrl}
         alt="Where's Wally Game"
-        imgRef={imageRef}
+        ref={imageRef}
         imgStyles={imageStyles}
         spinnerColour="hsl(288, 70%, 49%)"
         placeholderStyles={{ paddingTop: "48px" }}
