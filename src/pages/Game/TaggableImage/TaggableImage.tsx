@@ -1,6 +1,4 @@
-import PropTypes from "prop-types";
 import { useRef, useState } from "react";
-import { css } from "styled-components";
 import IncorrectIcon from "../../../assets/incorrect.svg";
 import ImageLoader from "../../../components/ImageLoader/ImageLoader";
 import Magnifier from "../Magnifier/Maginifier";
@@ -9,13 +7,31 @@ import {
   CorrectImg,
   IncorrectImg,
   StyledTaggableImage,
+  imageStyles,
 } from "./styles";
 
-const imageStyles = css`
-  width: 100%;
-  object-fit: contain;
-  border-radius: 16px;
-`;
+interface Answer {
+  character: string;
+  xCoord: number;
+  yCoord: number;
+}
+
+interface CorrectAnswer extends Answer {
+  imageUrl: string;
+}
+
+interface TaggableImageProps {
+  imageUrl: string;
+  characters: Array<{
+    name: string;
+    imageUrl: string;
+  }>;
+  checkAnswer: (answer: Answer) => Promise<boolean>;
+  correctAnswers: CorrectAnswer[];
+  levelComplete: boolean;
+}
+
+type MagnifierBehaviour = "hidden" | "hover" | "clicked";
 
 const TaggableImage = ({
   imageUrl,
@@ -23,14 +39,15 @@ const TaggableImage = ({
   checkAnswer,
   correctAnswers,
   levelComplete,
-}) => {
+}: TaggableImageProps) => {
   const [clickedCoords, setClickedCoords] = useState({ x: 0, y: 0 });
   const [hoverCoords, setHoverCoords] = useState({ x: 0, y: 0 });
-  const [magnifierBehaviour, setMagnifierBehaviour] = useState("hidden");
+  const [magnifierBehaviour, setMagnifierBehaviour] =
+    useState<MagnifierBehaviour>("hidden");
   const [showIncorrectMark, setShowIncorrectMark] = useState(false);
-  const imageRef = useRef(null);
+  const imageRef = useRef<HTMLImageElement>(null);
 
-  const handleClick = (e) => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>): void => {
     if (levelComplete) return;
 
     // Hide character selection menu
@@ -48,7 +65,7 @@ const TaggableImage = ({
     setMagnifierBehaviour("clicked");
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>): void => {
     const { top, left } = e.currentTarget.getBoundingClientRect();
     const x = Math.round(e.clientX - left);
     const y = Math.round(e.clientY - top);
@@ -56,11 +73,13 @@ const TaggableImage = ({
   };
 
   // Call checkAnswer prop with additional side effects
-  const customCheckAnswer = async (character) => {
+  const customCheckAnswer = async (character: string): Promise<void> => {
     setMagnifierBehaviour("hover");
 
     // Create answer object
     const img = imageRef.current;
+    if (!img) return;
+
     const normalisedX = clickedCoords.x / img.width;
     const normalisedY = clickedCoords.y / img.height;
     const answer = {
@@ -79,11 +98,19 @@ const TaggableImage = ({
     }
   };
 
-  const getAnswerMarkerPositionStyles = (data) => {
+  const getAnswerMarkerPositionStyles = (
+    answer: Answer
+  ): { left: string; top: string } => {
     // Normalise coords to current img dimensions
     const img = imageRef.current;
-    const xCoord = data.xCoord * (img.width / img.naturalWidth);
-    const yCoord = data.yCoord * (img.height / img.naturalHeight);
+    if (!img)
+      return {
+        left: "0px",
+        top: "0px",
+      };
+
+    const xCoord = answer.xCoord * (img.width / img.naturalWidth);
+    const yCoord = answer.yCoord * (img.height / img.naturalHeight);
 
     return {
       left: `${xCoord}px`,
@@ -143,26 +170,6 @@ const TaggableImage = ({
       )}
     </StyledTaggableImage>
   );
-};
-
-TaggableImage.propTypes = {
-  imageUrl: PropTypes.string.isRequired,
-  characters: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      imageUrl: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  checkAnswer: PropTypes.func.isRequired,
-  correctAnswers: PropTypes.arrayOf(
-    PropTypes.shape({
-      character: PropTypes.string.isRequired,
-      imageUrl: PropTypes.string.isRequired,
-      xCoord: PropTypes.number.isRequired,
-      yCoord: PropTypes.number.isRequired,
-    })
-  ).isRequired,
-  levelComplete: PropTypes.bool.isRequired,
 };
 
 export default TaggableImage;

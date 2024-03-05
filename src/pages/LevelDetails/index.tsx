@@ -9,12 +9,22 @@ import {
   Top,
 } from "./styles";
 
+interface Data {
+  scores: Array<{
+    _id: string;
+    name: string;
+    score: number;
+  }>;
+}
+
 const LevelDetails = () => {
   const { levelNum } = useParams();
-  const { data, loading, error } = useFetch(`/levels/${levelNum}/leaderboard`);
+  const { data, loading, error } = useFetch<Data>(
+    `/levels/${levelNum}/leaderboard`
+  );
 
   if (error) {
-    if (error.status === 404) {
+    if (error.message === "Not found.") {
       return (
         <div>
           <h1>Error</h1>

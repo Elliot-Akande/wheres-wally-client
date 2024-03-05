@@ -1,0 +1,44 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Game > renders error message level data error 1`] = `
+<div>
+  <p>
+    Error loading data.
+  </p>
+</div>
+`;
+
+exports[`Game > renders heading, Checklist, and TaggableImage 1`] = `
+<div>
+  <div
+    class="sc-beySPh gLCnrv"
+  >
+    <h1
+      class="sc-guDLey cxjOww"
+    >
+      LEVEL 
+      3
+    </h1>
+    <div>
+      Checklist Component
+    </div>
+  </div>
+  <div>
+    TaggableImage Component
+    <button>
+      Wally
+    </button>
+    <button>
+      Odlaw
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Game > renders loading message when loading level data 1`] = `
+<div>
+  <p>
+    Loading...
+  </p>
+</div>
+`;

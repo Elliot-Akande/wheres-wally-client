@@ -1,6 +1,8 @@
 import { css, styled } from "styled-components";
 
-export const StyledChecklistItem = styled.li`
+export const StyledChecklistItem = styled.li<{
+  $checked: boolean
+}>`
   padding: 8px 16px;
 
   display: flex;

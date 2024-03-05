@@ -1,0 +1,34 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SelectionMenu > renders menu items correctly 1`] = `
+<div>
+  <ul
+    class="sc-beySPh giVHEU"
+  >
+    <li>
+      <button
+        class="sc-guDLey jGcPSN"
+      >
+        <img
+          alt=""
+          class="sc-dmyCSP ipnxtg"
+          src="alice.jpg"
+        />
+        Alice
+      </button>
+    </li>
+    <li>
+      <button
+        class="sc-guDLey jGcPSN"
+      >
+        <img
+          alt=""
+          class="sc-dmyCSP ipnxtg"
+          src="bob.jpg"
+        />
+        Bob
+      </button>
+    </li>
+  </ul>
+</div>
+`;

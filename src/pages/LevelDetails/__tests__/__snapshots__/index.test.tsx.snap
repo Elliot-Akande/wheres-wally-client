@@ -1,0 +1,53 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LevelDetails > displays error message on levelNum that doesn't exist. 1`] = `
+<div>
+  <div>
+    <h1>
+      Error
+    </h1>
+    <p>
+      There was a problem fetching level data!
+    </p>
+    <a
+      href="/"
+    >
+      Back to home page
+    </a>
+  </div>
+</div>
+`;
+
+exports[`LevelDetails > renders title, start link, leaderboard, and home link. 1`] = `
+<div>
+  <div
+    class="sc-beySPh dBJtdt"
+  >
+    <div
+      class="sc-guDLey hoUZmj"
+    >
+      <h1
+        class="sc-dmyCSP cepTqO"
+      >
+        LEVEL 
+        3
+      </h1>
+      <a
+        class="sc-hLQSwg kCsMut"
+        href="/level/3"
+      >
+        Start
+      </a>
+    </div>
+    <div>
+      Leaderboard Component
+    </div>
+    <a
+      class="sc-eDLKkx fHuTzy"
+      href="/"
+    >
+      Back
+    </a>
+  </div>
+</div>
+`;

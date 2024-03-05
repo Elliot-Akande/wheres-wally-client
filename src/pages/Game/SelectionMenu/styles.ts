@@ -1,6 +1,8 @@
 import { styled, css } from "styled-components";
 
-export const StyledSelectionMenu = styled.ul`
+export const StyledSelectionMenu = styled.ul<{
+  $isLeft: boolean,
+}>`
   margin: 0;
   padding: 0;
 

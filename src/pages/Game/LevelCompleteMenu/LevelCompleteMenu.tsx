@@ -1,15 +1,34 @@
-import PropTypes from "prop-types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Leaderboard from "../../../components/Leaderboard/Leaderboard";
 import useFetch from "../../../hooks/useFetch";
 import fetchAsync from "../../../utils/fetchAsync";
 import formatTime from "../../../utils/formatTime";
-import { Button, Input, Menu, Score, Wrapper, Heading } from "./styles";
+import { Button, Heading, Input, Menu, Score, Wrapper } from "./styles";
 
-const LevelCompleteMenu = ({ levelNum, score, token }) => {
-  const { data, loading, error } = useFetch(`/levels/${levelNum}/leaderboard`);
-  const [updatedData, setUpdatedData] = useState(null);
+interface LevelCompleteMenuProps {
+  levelNum?: string;
+  score: number;
+  token: string;
+}
+
+interface Data {
+  scores: Array<{
+    _id: string;
+    name: string;
+    score: number;
+  }>;
+}
+
+const LevelCompleteMenu = ({
+  levelNum,
+  score,
+  token,
+}: LevelCompleteMenuProps) => {
+  const { data, loading, error } = useFetch<Data>(
+    `/levels/${levelNum}/leaderboard`
+  );
+  const [updatedData, setUpdatedData] = useState<Data | Error | null>(null);
   const [name, setName] = useState("Anon");
   const navigate = useNavigate();
 
@@ -27,10 +46,12 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
     );
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement>
+  ): Promise<void> => {
     e.preventDefault();
     e.currentTarget.disabled = true;
-    const response = await fetchAsync(`/levels/${levelNum}/leaderboard`, {
+    const response = await fetchAsync<Data>(`/levels/${levelNum}/leaderboard`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -97,12 +118,6 @@ const LevelCompleteMenu = ({ levelNum, score, token }) => {
       </Menu>
     </Wrapper>
   );
-};
-
-LevelCompleteMenu.propTypes = {
-  levelNum: PropTypes.string.isRequired,
-  score: PropTypes.number.isRequired,
-  token: PropTypes.string.isRequired,
 };
 
 export default LevelCompleteMenu;

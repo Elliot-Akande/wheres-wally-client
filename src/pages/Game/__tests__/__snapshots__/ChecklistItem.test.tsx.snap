@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ChecklistItem > renders correctly when found 1`] = `
+<div>
+  <li
+    class="sc-beySPh gNxOao"
+  >
+    <img
+      src="#"
+    />
+    Aang
+  </li>
+</div>
+`;
+
+exports[`ChecklistItem > renders correctly when not found 1`] = `
+<div>
+  <li
+    class="sc-beySPh buzIbi"
+  >
+    <img
+      src="#"
+    />
+    Aang
+  </li>
+</div>
+`;

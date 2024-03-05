@@ -1,7 +1,12 @@
 import ImageLoader from "../../../components/ImageLoader/ImageLoader";
 import { StyledLevelCard, Title, imgStyles } from "./styles";
 
-const LevelCard = ({ levelNum, imageUrl }) => {
+interface LevelCardProps {
+  levelNum: string;
+  imageUrl: string;
+}
+
+const LevelCard = ({ levelNum, imageUrl }: LevelCardProps) => {
   return (
     <StyledLevelCard to={`level/${levelNum}/details`}>
       <ImageLoader

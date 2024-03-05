@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Checklist > renders a list of characters with correct checked status 1`] = `
+<div>
+  <ul
+    class="sc-beySPh iukuLq"
+  >
+    <li>
+      Harry
+       is 
+      Not Found
+    </li>
+    <li>
+      Hermione
+       is 
+      Found
+    </li>
+  </ul>
+</div>
+`;

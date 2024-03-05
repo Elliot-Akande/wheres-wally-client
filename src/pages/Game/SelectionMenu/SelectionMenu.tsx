@@ -1,8 +1,25 @@
-import PropTypes from "prop-types";
 import { Button, Image, StyledSelectionMenu } from "./styles";
 
-const SelectionMenu = ({ characters, checkAnswer, menuDirection }) => {
-  const handleClick = (e, name) => {
+interface Character {
+  name: string;
+  imageUrl: string;
+}
+
+interface SelectionMenuProps {
+  characters: Character[];
+  checkAnswer: (answer: string) => Promise<void>;
+  menuDirection: "left" | "right";
+}
+
+const SelectionMenu = ({
+  characters,
+  checkAnswer,
+  menuDirection,
+}: SelectionMenuProps) => {
+  const handleClick = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    name: string
+  ) => {
     e.stopPropagation();
     checkAnswer(name);
   };
@@ -19,17 +36,6 @@ const SelectionMenu = ({ characters, checkAnswer, menuDirection }) => {
       ))}
     </StyledSelectionMenu>
   );
-};
-
-SelectionMenu.propTypes = {
-  characters: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      imageUrl: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  checkAnswer: PropTypes.func.isRequired,
-  menuDirection: PropTypes.string.isRequired,
 };
 
 export default SelectionMenu;

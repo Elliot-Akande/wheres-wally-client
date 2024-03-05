@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TaggableImage > renders img, CorrectAnswers, and Magnifier 1`] = `
+<div>
+  <div
+    class="sc-beySPh iDmzAO"
+  >
+    <img
+      alt="Where's Wally Game"
+      src="/test.jpg"
+    />
+    <div
+      class="sc-dmyCSP coJYrB"
+    >
+      <img
+        class="sc-hLQSwg dChYok"
+        src="/kate.jpg"
+      />
+    </div>
+    <div
+      data-testid="magnifier"
+    >
+      hidden
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,128 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LevelCompleteMenu > renders message on initial data fetching error 1`] = `
+<div>
+  <div
+    class="sc-beySPh dpCrB"
+  >
+    <div
+      class="sc-guDLey bMMjcS"
+    >
+      <h2>
+        Level complete!
+      </h2>
+      <p>
+        There was an error contacting the server.
+      </p>
+      <button
+        class="sc-jTQCzO iVNZlj"
+        type="button"
+      >
+        Home
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LevelCompleteMenu > renders message on updated data fetching error 1`] = `
+<div>
+  <div
+    class="sc-beySPh dpCrB"
+  >
+    <div
+      class="sc-guDLey bMMjcS"
+    >
+      <h1
+        class="sc-dmyCSP eFSKFA"
+      >
+        LEVEL COMPLETE!
+      </h1>
+      <p>
+        There was an error contacting the server.
+      </p>
+      <button
+        class="sc-jTQCzO iVNZlj"
+        type="button"
+      >
+        Home
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LevelCompleteMenu > renders title, leaderboard, and finish button on score submission 1`] = `
+<div>
+  <div
+    class="sc-beySPh dpCrB"
+  >
+    <div
+      class="sc-guDLey bMMjcS"
+    >
+      <h1
+        class="sc-dmyCSP eFSKFA"
+      >
+        LEVEL COMPLETE!
+      </h1>
+      <div>
+        Leaderboard
+      </div>
+      <button
+        class="sc-jTQCzO iVNZlj"
+      >
+        Finish
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LevelCompleteMenu > renders title, score, leaderboard, name form, and submit button 1`] = `
+<div>
+  <div
+    class="sc-beySPh dpCrB"
+  >
+    <div
+      class="sc-guDLey bMMjcS"
+    >
+      <h1
+        class="sc-dmyCSP eFSKFA"
+      >
+        LEVEL COMPLETE!
+      </h1>
+      <p
+        class="sc-hLQSwg edtDZs"
+      >
+        Your Score - 
+        <b>
+          01:40
+        </b>
+      </p>
+      <div>
+        Leaderboard
+      </div>
+      <form>
+        <label
+          for="name"
+        >
+          Name
+        </label>
+        <input
+          class="sc-eDLKkx logZVp"
+          id="name"
+          maxlength="32"
+          type="text"
+          value="Anon"
+        />
+        <button
+          class="sc-jTQCzO iVNZlj"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;

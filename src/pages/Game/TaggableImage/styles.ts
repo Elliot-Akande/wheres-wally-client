@@ -1,4 +1,5 @@
-import { css, keyframes, styled } from "styled-components";
+import React from "react";
+import { Interpolation, css, keyframes, styled } from "styled-components";
 
 const fadeout = keyframes`
   25%,
@@ -34,7 +35,12 @@ const marker = css`
   transform: translate(-50%, -50%);
 `;
 
-export const IncorrectImg = styled.img`
+export const IncorrectImg = styled.img<{
+  $coords: {
+    x: number,
+    y: number,
+  } 
+}>`
   ${marker}
 
   height: 16px;
@@ -53,7 +59,9 @@ export const IncorrectImg = styled.img`
   `}
 `;
 
-export const CorrectContainer = styled.div`
+export const CorrectContainer = styled.div<{
+  $positionStyles: Interpolation<React.CSSProperties>
+}>`
   ${marker}
 
   height: 25px;
@@ -71,4 +79,10 @@ export const CorrectContainer = styled.div`
 export const CorrectImg = styled.img`
   max-height: 350%;
   max-width: 350%;
+`;
+
+export const imageStyles = css`
+  width: 100%;
+  object-fit: contain;
+  border-radius: 16px;
 `;

@@ -1,10 +1,19 @@
-import PropTypes from "prop-types";
 import ChecklistItem from "../ChecklistItem/ChecklistItem";
 import { StyledChecklist } from "./styles";
 
-const Checklist = ({ characters, correctAnswers }) => {
-  const isFound = (character) => {
-    return correctAnswers.find((answer) => answer.character === character);
+interface ChecklistProps {
+  characters: Array<{
+    name: string;
+    imageUrl: string;
+  }>;
+  correctAnswers: Array<{
+    character: string;
+  }>;
+}
+
+const Checklist = ({ characters, correctAnswers }: ChecklistProps) => {
+  const isFound = (characterName: string) => {
+    return correctAnswers.find((answer) => answer.character === characterName);
   };
 
   return (
@@ -18,20 +27,6 @@ const Checklist = ({ characters, correctAnswers }) => {
       ))}
     </StyledChecklist>
   );
-};
-
-Checklist.propTypes = {
-  characters: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      imageUrl: PropTypes.string.isRequired,
-    })
-  ),
-  correctAnswers: PropTypes.arrayOf(
-    PropTypes.shape({
-      character: PropTypes.string,
-    })
-  ).isRequired,
 };
 
 export default Checklist;

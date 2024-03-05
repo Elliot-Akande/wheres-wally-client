@@ -2,8 +2,8 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import Leaderboard from "../Leaderboard/Leaderboard";
 
-vi.mock("../../utils/formatTime.js", () => ({
-  default: (time) => time,
+vi.mock("../../utils/formatTime.ts", () => ({
+  default: (time: number): number => time,
 }));
 
 const data = {
@@ -28,7 +28,7 @@ describe("Leaderboard", () => {
   });
 
   it("renders heading and loading message when loading data", () => {
-    const { container } = render(<Leaderboard data={{}} loading={true} />);
+    const { container } = render(<Leaderboard data={null} loading={true} />);
     expect(container).toMatchSnapshot();
   });
 

@@ -1,6 +1,22 @@
 import { styled } from "styled-components";
 
-export const StyledMagnifier = styled.div.attrs(
+interface StyledMagnifierProps {
+  $magnifierHeight: number;
+  $magnifierWidth: number;
+  $coords: {
+    x: number;
+    y: number;
+  };
+  $imageUrl: string;
+  $imageDimensions: {
+    width: number;
+    height: number;
+  };
+  $zoomLevel: number;
+  $hidden: boolean;
+}
+
+export const StyledMagnifier = styled.div.attrs<StyledMagnifierProps>(
   ({
     $magnifierHeight,
     $magnifierWidth,
